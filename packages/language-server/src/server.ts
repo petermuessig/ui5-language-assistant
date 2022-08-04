@@ -38,6 +38,7 @@ import { diagnosticToCodeActionFix } from "./quick-fix";
 import { executeCommand } from "./commads";
 import { initSwa } from "./swa";
 import { getLogger, setLogLevel } from "./logger";
+import globby from "globby";
 
 const connection = createConnection(ProposedFeatures.all);
 const documents = new TextDocuments(TextDocument);
@@ -45,12 +46,14 @@ let semanticModelLoaded: Promise<UI5SemanticModel> | undefined = undefined;
 let manifestStateInitialized: Promise<void[]> | undefined = undefined;
 let initializationOptions: ServerInitializationOptions | undefined;
 let hasConfigurationCapability = false;
+let workspacePath: string | undefined = undefined;
 
 connection.onInitialize((params: InitializeParams) => {
   getLogger().info("`onInitialize` event", params);
   if (params?.initializationOptions?.logLevel) {
     setLogLevel(params?.initializationOptions?.logLevel);
   }
+  setLogLevel("debug");
   initSwa(params);
 
   const capabilities = params.capabilities;
@@ -58,6 +61,7 @@ connection.onInitialize((params: InitializeParams) => {
   if (workspaceFolderUri !== null) {
     const workspaceFolderAbsPath = URI.parse(workspaceFolderUri).fsPath;
     manifestStateInitialized = initializeManifestData(workspaceFolderAbsPath);
+    workspacePath = workspaceFolderAbsPath;
   }
 
   // Does the client support the `workspace/configuration` request?
@@ -92,7 +96,7 @@ connection.onInitialize((params: InitializeParams) => {
 
 connection.onInitialized(async () => {
   getLogger().info("`onInitialized` event");
-  semanticModelLoaded = getSemanticModel(initializationOptions?.modelCachePath);
+  semanticModelLoaded = getSemanticModel(initializationOptions?.modelCachePath, workspacePath);
 
   if (hasConfigurationCapability) {
     // Register for all configuration changes
@@ -168,6 +172,10 @@ connection.onDidChangeWatchedFiles(async (changeEvent) => {
   getLogger().debug("`onDidChangeWatchedFiles` event", { changeEvent });
   forEach(changeEvent.changes, async (change) => {
     const uri = change.uri;
+    if (uri.endsWith("ui5.yaml")) {
+      semanticModelLoaded = getSemanticModel(initializationOptions?.modelCachePath, workspacePath);
+      return;
+    }
     if (!isManifestDoc(uri)) {
       return;
     }
