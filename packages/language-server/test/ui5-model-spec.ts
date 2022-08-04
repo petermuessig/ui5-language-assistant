@@ -56,6 +56,7 @@ describe("the UI5 language assistant ui5 model", () => {
     const ui5Model = await getSemanticModelWithFetcher(async (url: string) => {
       return {
         ok: false,
+        status: 500,
         json: (): never => {
           throw new Error(`Cannot read from ${url}`);
         },
@@ -170,6 +171,7 @@ describe("the UI5 language assistant ui5 model", () => {
           fetcherCalled = true;
           return {
             ok: true,
+            status: 200,
             json: async (): Promise<unknown> => {
               return {};
             },

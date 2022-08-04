@@ -3,14 +3,14 @@
      xmlns:mvc="sap.ui.core.mvc"
      xmlns="sap.m">
      <mvc:content>
-        <🢂Button_TYPO🢀 />
+        <Button_TYPO />
         <SplitApp>
-            <🢂content_TYPO🢀>
+            <content_TYPO>
             </content_TYPO>
         </SplitApp>
-        <🢂mvc:TYPO🢀>
+        <mvc:TYPO>
         </mvc:TYPO>
      </mvc:content>
-     <🢂Button2_TYPO🢀 />
+     <Button2_TYPO />
     </mvc:View>
 </View>

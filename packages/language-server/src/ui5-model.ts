@@ -39,11 +39,13 @@ export async function getSemanticModelWithFetcher(
   let version = DEFAULT_UI5_VERSION;
 
   // The ui5.yaml provides the information about the framework and version to be used for the UI5 model
-  const ui5YamlPath = (await globby([`${workspacePath}/**/ui5.yaml`, `!${workspacePath}/node_modules/**`]))?.pop();
-  if (ui5YamlPath) {
-    const ui5Yaml = parse(readFileSync(ui5YamlPath, { encoding: "utf8" }));
-    framework = ui5Yaml?.framework?.name?.toLowerCase() || framework;
-    version = ui5Yaml?.framework?.version || version;
+  if (workspacePath) {
+    const ui5YamlPath = (await globby([`${workspacePath}/**/ui5.yaml`, `!${workspacePath}/node_modules/**`]))?.pop();
+    if (ui5YamlPath) {
+      const ui5Yaml = parse(readFileSync(ui5YamlPath, { encoding: "utf8" }));
+      framework = ui5Yaml?.framework?.name?.toLowerCase() || framework;
+      version = ui5Yaml?.framework?.version || version;
+    }
   }
 
   // Note: all cache handling (reading, writing etc) is optional from the user perspective but
@@ -85,8 +87,11 @@ export async function getSemanticModelWithFetcher(
         if (response.ok) {
           apiJson = await response.json();
           await writeToCache(cacheFilePath, apiJson);
+        } else if (response.status === 404) {
+          getLogger().error("Could not find UI5 lib from", { url });
+          await writeToCache(cacheFilePath, {}); // write dummy file! TODO: how to invalidate?
         } else {
-          getLogger().error("Could not read UI5 resources from", { url });
+          getLogger().error("Could not read UI5 lib from", { url });
         }
       } else {
         getLogger().info("Reading Cache For UI5 Lib ", {
@@ -117,7 +122,7 @@ async function readFromCache(filePath: string | undefined): Promise<unknown> {
         return await readJson(filePath);
       }
     } catch (err) {
-      getLogger().warn("Could not read cache file For UI5 lib", {
+      getLogger().warn("Could not read cache file for", {
         filePath,
         error: err,
       });
@@ -198,13 +203,18 @@ function getTypeNameFix(): TypeNameFix {
 async function getLibsAsync(cacheFilePath: string | undefined, cdnBaseUrl: string): Promise<string[]> {
   let libs = await readFromCache(cacheFilePath) as string[];
   if (libs === undefined) {
-    const response = await fetch(`${cdnBaseUrl}resources/sap-ui-version.json`);
-    const versionInfo = await response.json();
-    // read libraries from version information
-    libs = versionInfo?.libraries?.map(lib => {
-      return lib.name;
-    }) as string[];
-    writeToCache(cacheFilePath, libs);
+    const url = `${cdnBaseUrl}resources/sap-ui-version.json`;
+    const response = await fetch(url);
+    if (response.ok) {
+      const versionInfo = await response.json();
+      // read libraries from version information
+      libs = versionInfo?.libraries?.map(lib => {
+        return lib.name;
+      }) as string[];
+      writeToCache(cacheFilePath, libs);
+    } else {
+      getLogger().error("Could not read UI5 libraries from", { url });
+    }
   }
   return libs;
 }

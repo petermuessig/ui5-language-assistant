@@ -4,9 +4,9 @@
   <m:Panel> 
     <m:headerToolbar>
       <m:OverflowToolbar></m:OverflowToolbar>
-      <🢂m:Toolbar🢀></m:Toolbar>
+      <m:Toolbar></m:Toolbar>
     </m:headerToolbar>
     <m:headerToolbar>
-      <🢂m:Toolbar🢀></m:Toolbar>
+      <m:Toolbar></m:Toolbar>
     </m:headerToolbar>
 </mvc:View>

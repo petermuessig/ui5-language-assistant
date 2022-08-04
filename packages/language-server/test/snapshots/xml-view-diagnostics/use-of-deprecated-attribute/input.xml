@@ -1,9 +1,9 @@
 <mvc:View xmlns:m="sap.m" 
   xmlns:mvc="sap.ui.core.mvc">
-  <m:Page 🢂navButtonText🢀="dummy-text">
+  <m:Page navButtonText="dummy-text">
   </m:Page>
-  <m:App 🢂orientationChange🢀="dummy-text">
+  <m:App orientationChange="dummy-text">
   </m:App>
-  <m:Popover 🢂leftButton🢀="dummy-text">
+  <m:Popover leftButton="dummy-text">
   </m:Popover>
 </mvc:View

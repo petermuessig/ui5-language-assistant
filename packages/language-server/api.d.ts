@@ -3,6 +3,7 @@
  * This is useful when launching the server in a separate process (e.g via spawn).
  */
 import { LogLevel } from "@vscode-logging/types";
+import { integer } from "vscode-languageserver-types";
 
 export declare const SERVER_PATH: string;
 
@@ -27,6 +28,7 @@ export type ServerInitializationOptions = {
 
 export type FetchResponse = {
   ok: boolean;
+  status: integer;
   json: () => Promise<unknown>;
 };
 
