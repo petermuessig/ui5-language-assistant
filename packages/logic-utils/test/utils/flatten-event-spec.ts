@@ -5,6 +5,7 @@ import {
 } from "@ui5-language-assistant/test-utils";
 import { map } from "lodash";
 import { flattenEvents } from "../../src/api";
+import { expect, describe, it, beforeEach } from "vitest";
 
 describe('"The @ui5-language-assistant/logic-utils <flattenProperties> function"', function () {
   const eventA1 = buildUI5Event({ name: "eventA1" });

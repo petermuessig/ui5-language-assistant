@@ -8,6 +8,7 @@ import {
   INPUT_FILE_NAME,
   LSPDiagnosticOptions,
 } from "./snapshots-utils";
+import { expect, describe, it, beforeEach } from "vitest";
 
 describe(`The language server diagnostics capability`, () => {
   // The test files are in the source dir, not lib
