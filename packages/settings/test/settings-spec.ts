@@ -8,14 +8,14 @@ import {
   clearSettings,
 } from "../src/api";
 import { resetSettings } from "../src/settings";
-import { expect } from "chai";
+import { expect, describe, it, beforeEach } from "vitest";
 
-context("settings utilities", () => {
+describe("settings utilities", () => {
   beforeEach(() => {
     resetSettings();
   });
 
-  context("default settings", () => {
+  describe("default settings", () => {
     it("by default, deprecated and experimental suggestions will not be offered", () => {
       const defaultSettings = getDefaultSettings();
       expect(defaultSettings.codeAssist.deprecated).to.be.false;

@@ -1,4 +1,4 @@
-import { expect } from "chai";
+import { expect, describe, it, beforeEach } from "vitest";
 import { isPossibleBindingAttributeValue } from "../../src/utils/is-binding-attribute-value";
 
 describe("isPossibleBindingAttributeValue", () => {

@@ -1,4 +1,4 @@
-import { expect } from "chai";
+import { beforeAll, describe, it, beforeEach } from "vitest";
 import { forEach, map } from "lodash";
 import { XMLAttribute, XMLElement } from "@xml-tools/ast";
 import { UI5SemanticModel } from "@ui5-language-assistant/semantic-model-types";
@@ -10,18 +10,22 @@ import {
   BooleanValueInXMLAttributeValueCompletion,
 } from "../../../api";
 import { testSuggestionsScenario } from "../../utils";
+import chai from "chai";
 
+const deepEqualInAnyOrder = require("deep-equal-in-any-order");
+chai.use(deepEqualInAnyOrder);
+const { expect } = chai;
 describe("The ui5-language-assistant xml-views-completion", () => {
   let ui5SemanticModel: UI5SemanticModel;
-  before(async () => {
+  beforeAll(async () => {
     ui5SemanticModel = await generateModel({
       version: "1.74.0",
       modelGenerator: generate,
     });
   });
 
-  context("boolean values", () => {
-    context("applicable scenarios", () => {
+  describe("boolean values", () => {
+    describe("applicable scenarios", () => {
       it("will suggest boolean values with no prefix provided", () => {
         const xmlSnippet = `
           <mvc:View
@@ -92,7 +96,7 @@ describe("The ui5-language-assistant xml-views-completion", () => {
       });
     });
 
-    context("non-applicable scenarios", () => {
+    describe("non-applicable scenarios", () => {
       it("will not provide any suggestions when the property is not of boolean type", () => {
         const xmlSnippet = `
           <mvc:View

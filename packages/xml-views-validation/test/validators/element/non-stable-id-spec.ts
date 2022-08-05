@@ -11,22 +11,23 @@ import {
   assertSingleIssue as assertSingleIssueBase,
 } from "../../test-utils";
 import { validators } from "../../../src/api";
+import { expect, beforeAll, describe, it, beforeEach } from "vitest";
 
 const { NON_STABLE_ID } = validations;
 
 describe("the use of non stable id validation", () => {
   let ui5SemanticModel: UI5SemanticModel;
 
-  before(async () => {
+  beforeAll(async () => {
     ui5SemanticModel = await generateModel({
       version: "1.74.0",
       modelGenerator: generate,
     });
   });
 
-  context("true positive scenarios", () => {
+  describe("true positive scenarios", () => {
     let assertSingleIssue: (xmlSnippet: string, message: string) => void;
-    before(() => {
+    beforeAll(() => {
       assertSingleIssue = partial(
         assertSingleIssueBase,
         ui5SemanticModel,
@@ -125,9 +126,9 @@ describe("the use of non stable id validation", () => {
     });
   });
 
-  context("negative edge cases", () => {
+  describe("negative edge cases", () => {
     let assertNoIssues: (xmlSnippet: string) => void;
-    before(() => {
+    beforeAll(() => {
       assertNoIssues = partial(assertNoIssuesBase, ui5SemanticModel, {
         element: [validators.validateNonStableId],
       });

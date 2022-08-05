@@ -145,11 +145,13 @@ export async function readTestLibraryFile(
     const filePath = resolve(inputFolder, fileName);
     const ok = existsSync(filePath);
     return {
+      status: 200,
       ok: ok,
       json: (): Promise<unknown> => readJson(filePath),
     };
   } catch (error) {
     return {
+      status: 404,
       ok: false,
       json: (): never => {
         throw error;

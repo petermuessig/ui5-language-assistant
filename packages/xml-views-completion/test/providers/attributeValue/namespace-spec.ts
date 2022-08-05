@@ -1,4 +1,4 @@
-import { expect } from "chai";
+import { expect, beforeAll, describe, it, beforeEach } from "vitest";
 import { partial } from "lodash";
 import { UI5SemanticModel } from "@ui5-language-assistant/semantic-model-types";
 import { ui5NodeToFQN } from "@ui5-language-assistant/logic-utils";
@@ -23,15 +23,15 @@ const expectNamespaceValuesSuggestions = partial(expectSuggestions, (_) => {
 
 describe("The ui5-editor-tools xml-views-completion", () => {
   let ui5SemanticModel: UI5SemanticModel;
-  before(async () => {
+  beforeAll(async () => {
     ui5SemanticModel = await generateModel({
       version: "1.74.0",
       modelGenerator: generate,
     });
   });
 
-  context("namespaces values", () => {
-    context("applicable scenarios", () => {
+  describe("namespaces values", () => {
+    describe("applicable scenarios", () => {
       it("will suggest namespace values with no prefix provided", () => {
         const xmlSnippet = `
           <mvc:View
@@ -215,7 +215,7 @@ describe("The ui5-editor-tools xml-views-completion", () => {
       });
     });
 
-    context("not reproducible scenarios", () => {
+    describe("not reproducible scenarios", () => {
       it("will not suggest when attribute key is null", () => {
         const xmlAttribute = createXMLAttribute("dummy", null, null, {});
         const suggestions = namespaceValueSuggestions({

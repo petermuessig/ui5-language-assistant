@@ -1,4 +1,4 @@
-import { expect } from "chai";
+import { describe, beforeAll, it, beforeEach } from "vitest";
 import { clone, cloneDeep, find, forEach, map } from "lodash";
 import { XMLElement } from "@xml-tools/ast";
 import {
@@ -18,20 +18,24 @@ import {
   UI5ClassesInXMLTagNameCompletion,
 } from "../../../api";
 import { testSuggestionsScenario } from "../../utils";
+import chai from "chai";
 
+const deepEqualInAnyOrder = require("deep-equal-in-any-order");
+chai.use(deepEqualInAnyOrder);
+const { expect } = chai;
 describe("The ui5-language-assistant xml-views-completion", () => {
   let ui5Model: UI5SemanticModel;
-  before(async function () {
+  beforeAll(async function () {
     ui5Model = await generateModel({
       version: "1.74.0",
       modelGenerator: generate,
     });
   });
 
-  context("UI5 Classes Suggestions", () => {
-    context("applicable scenarios", () => {
-      context("classes at the document's root", () => {
-        context("no prefix", () => {
+  describe("UI5 Classes Suggestions", () => {
+    describe("applicable scenarios", () => {
+      describe("classes at the document's root", () => {
+        describe("no prefix", () => {
           it("will suggest **all** Controls at the top level", () => {
             const xmlSnippet = `
               <⇶
@@ -61,7 +65,7 @@ describe("The ui5-language-assistant xml-views-completion", () => {
           });
         });
 
-        context("prefix without xmlns", () => {
+        describe("prefix without xmlns", () => {
           it("will suggest **only** classes matching `sap.ui.core.Control` (not Element) type and the **prefix**", () => {
             const xmlSnippet = `
               <QuickView⇶
@@ -100,8 +104,8 @@ describe("The ui5-language-assistant xml-views-completion", () => {
         });
       });
 
-      context("classes under (implicit) default aggregations", () => {
-        context("no prefix", () => {
+      describe("classes under (implicit) default aggregations", () => {
+        describe("no prefix", () => {
           it("will suggest **all** classes matching the type of the default aggregation", () => {
             const xmlSnippet = `
             <mvc:View
@@ -139,7 +143,7 @@ describe("The ui5-language-assistant xml-views-completion", () => {
           });
         });
 
-        context("prefix without xmlns", () => {
+        describe("prefix without xmlns", () => {
           it("will suggest **only** classes matching **both** the type of the default aggregation and the **prefix**", () => {
             const xmlSnippet = `
             <mvc:View
@@ -172,7 +176,7 @@ describe("The ui5-language-assistant xml-views-completion", () => {
           });
         });
 
-        context("prefix with xmlns", () => {
+        describe("prefix with xmlns", () => {
           it("will suggest **only** classes matching **both** the type of the default aggregation and the **xmlns prefix**", () => {
             const xmlSnippet = `
             <mvc:View
@@ -206,8 +210,8 @@ describe("The ui5-language-assistant xml-views-completion", () => {
         });
       });
 
-      context("classes under an explicit aggregation", () => {
-        context("no prefix", () => {
+      describe("classes under an explicit aggregation", () => {
+        describe("no prefix", () => {
           it("will suggest **all** classes matching the type of the **explicit aggregation**", () => {
             const xmlSnippet = `
             <mvc:View
@@ -294,7 +298,7 @@ describe("The ui5-language-assistant xml-views-completion", () => {
           });
         });
 
-        context("prefix without xmlns", () => {
+        describe("prefix without xmlns", () => {
           it("will suggest **all** classes matching the type of the **explicit aggregation**", () => {
             const xmlSnippet = `
             <mvc:View
@@ -328,8 +332,8 @@ describe("The ui5-language-assistant xml-views-completion", () => {
           });
         });
 
-        context("prefix with xmlns", () => {
-          context("xmlns usage with text after the colon", () => {
+        describe("prefix with xmlns", () => {
+          describe("xmlns usage with text after the colon", () => {
             it("will suggest **only** classes matching **both** the type of the default aggregation and the **xmlns prefix**", () => {
               const xmlSnippet = `
             <mvc:View
@@ -395,11 +399,9 @@ describe("The ui5-language-assistant xml-views-completion", () => {
             });
           });
 
-          context(
-            "xmlns usage with the prefix only (nothing after colon)",
-            () => {
-              it("will suggest **only** classes matching **both** the type of the default aggregation and the **xmlns prefix**", () => {
-                const xmlSnippet = `
+          describe("xmlns usage with the prefix only (nothing after colon)", () => {
+            it("will suggest **only** classes matching **both** the type of the default aggregation and the **xmlns prefix**", () => {
+              const xmlSnippet = `
             <mvc:View
               xmlns:mvc="sap.ui.core.mvc"
               xmlns="sap.m"
@@ -410,29 +412,29 @@ describe("The ui5-language-assistant xml-views-completion", () => {
               </mvc:layoutData>
             </mvc:View>`;
 
-                testSuggestionsScenario({
-                  model: ui5Model,
-                  xmlText: xmlSnippet,
-                  providers: {
-                    elementName: [classesSuggestions],
-                  },
-                  assertion: (suggestions) => {
-                    assertSuggestionProperties(suggestions, "layoutData");
-                    const suggestionNames = map(suggestions, (_) =>
-                      ui5NodeToFQN(_.ui5Node)
-                    );
-                    // Can "manually" traverse expected graph of `sap.ui.core.LayoutData` subClasses here:
-                    //   - https://sapui5.hana.ondemand.com/1.74.0/#/api/sap.ui.core.LayoutData
-                    expect(suggestionNames).to.deep.equalInAnyOrder([
-                      "sap.ui.commons.form.GridContainerData",
-                      "sap.ui.commons.form.GridElementData",
-                    ]);
-                  },
-                });
+              testSuggestionsScenario({
+                model: ui5Model,
+                xmlText: xmlSnippet,
+                providers: {
+                  elementName: [classesSuggestions],
+                },
+                assertion: (suggestions) => {
+                  assertSuggestionProperties(suggestions, "layoutData");
+                  const suggestionNames = map(suggestions, (_) =>
+                    ui5NodeToFQN(_.ui5Node)
+                  );
+                  // Can "manually" traverse expected graph of `sap.ui.core.LayoutData` subClasses here:
+                  //   - https://sapui5.hana.ondemand.com/1.74.0/#/api/sap.ui.core.LayoutData
+                  expect(suggestionNames).to.deep.equalInAnyOrder([
+                    "sap.ui.commons.form.GridContainerData",
+                    "sap.ui.commons.form.GridElementData",
+                  ]);
+                },
               });
+            });
 
-              it("will only suggest classes from the specified namespace and not its sub-namespaces", () => {
-                const xmlSnippet = `
+            it("will only suggest classes from the specified namespace and not its sub-namespaces", () => {
+              const xmlSnippet = `
                   <mvc:View
                     xmlns:mvc="sap.ui.core.mvc"
                     xmlns:core="sap.ui.core"
@@ -442,38 +444,37 @@ describe("The ui5-language-assistant xml-views-completion", () => {
                     </mvc:content>
                   </mvc:View>`;
 
-                testSuggestionsScenario({
-                  model: ui5Model,
-                  xmlText: xmlSnippet,
-                  providers: {
-                    elementName: [classesSuggestions],
-                  },
-                  assertion: (suggestions) => {
-                    assertSuggestionProperties(suggestions, "content");
-                    const suggestionNames = map(suggestions, (_) =>
-                      ui5NodeToFQN(_.ui5Node)
-                    );
-                    expect(suggestionNames).to.deep.equalInAnyOrder([
-                      "sap.ui.core.ComponentContainer",
-                      "sap.ui.core.HTML",
-                      "sap.ui.core.Icon",
-                      "sap.ui.core.InvisibleText",
-                      "sap.ui.core.LocalBusyIndicator",
-                      "sap.ui.core.ScrollBar",
-                    ]);
-                    expect(suggestionNames).to.not.include(
-                      "sap.ui.core.mvc.View"
-                    );
-                  },
-                });
+              testSuggestionsScenario({
+                model: ui5Model,
+                xmlText: xmlSnippet,
+                providers: {
+                  elementName: [classesSuggestions],
+                },
+                assertion: (suggestions) => {
+                  assertSuggestionProperties(suggestions, "content");
+                  const suggestionNames = map(suggestions, (_) =>
+                    ui5NodeToFQN(_.ui5Node)
+                  );
+                  expect(suggestionNames).to.deep.equalInAnyOrder([
+                    "sap.ui.core.ComponentContainer",
+                    "sap.ui.core.HTML",
+                    "sap.ui.core.Icon",
+                    "sap.ui.core.InvisibleText",
+                    "sap.ui.core.LocalBusyIndicator",
+                    "sap.ui.core.ScrollBar",
+                  ]);
+                  expect(suggestionNames).to.not.include(
+                    "sap.ui.core.mvc.View"
+                  );
+                },
               });
-            }
-          );
+            });
+          });
         });
       });
     });
 
-    context("none applicable scenarios", () => {
+    describe("none applicable scenarios", () => {
       it("will offer no suggestions which are abstract classes", () => {
         const xmlSnippet = `
             <mvc:View

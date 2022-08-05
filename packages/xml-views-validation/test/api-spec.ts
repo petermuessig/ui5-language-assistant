@@ -1,4 +1,4 @@
-import { expect } from "chai";
+import { expect, beforeAll, describe, it, beforeEach } from "vitest";
 import { map, cloneDeep } from "lodash";
 import { UI5SemanticModel } from "@ui5-language-assistant/semantic-model-types";
 import { generateModel } from "@ui5-language-assistant/test-utils";
@@ -12,7 +12,7 @@ import { validateNonStableId } from "../src/validators/elements/non-stable-id";
 describe("the ui5 xml views validations API", () => {
   let ui5SemanticModel: UI5SemanticModel;
 
-  before(async () => {
+  beforeAll(async () => {
     ui5SemanticModel = await generateModel({
       version: "1.74.0",
       modelGenerator: generate,

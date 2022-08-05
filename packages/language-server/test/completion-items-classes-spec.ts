@@ -1,4 +1,4 @@
-import { expect } from "chai";
+import { expect, describe, it, beforeEach } from "vitest";
 import { map, forEach } from "lodash";
 import {
   CompletionItemKind,

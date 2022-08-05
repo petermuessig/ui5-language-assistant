@@ -1,4 +1,4 @@
-import { expect } from "chai";
+import { expect, beforeAll, describe, it, beforeEach } from "vitest";
 import { difference, partial } from "lodash";
 import {
   UI5Aggregation,
@@ -156,15 +156,15 @@ const expectNamespaceKeysSuggestions = partial(expectSuggestions, (_) => {
 describe("The ui5-language-assistant xml-views-completion", () => {
   let ui5SemanticModel: UI5SemanticModel;
 
-  before(async () => {
+  beforeAll(async () => {
     ui5SemanticModel = await generateModel({
       version: "1.74.0",
       modelGenerator: generate,
     });
   });
 
-  context("namespaces", () => {
-    context("applicable scenarios", () => {
+  describe("namespaces", () => {
+    describe("applicable scenarios", () => {
       it("will suggest when 'xmlns' prefix provided", () => {
         const xmlSnippet = `
         <mvc:View
@@ -301,9 +301,9 @@ describe("The ui5-language-assistant xml-views-completion", () => {
       });
     });
 
-    context("not reproducible scenario", () => {
+    describe("not reproducible scenario", () => {
       //TODO check with Shachar if this case can be received from xml
-      context("isExistingNamespaceAttribute", () => {
+      describe("isExistingNamespaceAttribute", () => {
         it("invalid attribute key", () => {
           const attributeWithInvalidKey = createXMLAttribute(
             "dummy",

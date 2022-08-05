@@ -1,4 +1,4 @@
-import { expect } from "chai";
+import { expect, beforeAll, describe, it, beforeEach } from "vitest";
 import { map, cloneDeep, forEach } from "lodash";
 import { XMLElement } from "@xml-tools/ast";
 import { UI5SemanticModel } from "@ui5-language-assistant/semantic-model-types";
@@ -13,15 +13,15 @@ import { UI5XMLViewCompletion } from "../../../api";
 
 describe("The ui5-language-assistant xml-views-completion", () => {
   let REAL_UI5_MODEL: UI5SemanticModel;
-  before(async () => {
+  beforeAll(async () => {
     REAL_UI5_MODEL = await generateModel({
       version: "1.74.0",
       modelGenerator: generate,
     });
   });
 
-  context("aggregations", () => {
-    context("applicable scenarios", () => {
+  describe("aggregations", () => {
+    describe("applicable scenarios", () => {
       it("will suggest direct aggregations", () => {
         const xmlSnippet = `
           <mvc:View
@@ -369,7 +369,7 @@ describe("The ui5-language-assistant xml-views-completion", () => {
       });
     });
 
-    context("none applicable scenarios", () => {
+    describe("none applicable scenarios", () => {
       it("will not suggest on tag with xmlns prefix", () => {
         const clonedModel = cloneDeep(REAL_UI5_MODEL);
         const aggregationWithPrefix = buildUI5Aggregation({

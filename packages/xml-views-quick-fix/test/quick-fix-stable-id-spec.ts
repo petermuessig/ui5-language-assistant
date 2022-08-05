@@ -1,4 +1,4 @@
-import { expect } from "chai";
+import { expect, describe, it, beforeEach } from "vitest";
 import { TextDocument } from "vscode-languageserver";
 import { parse, DocumentCstNode } from "@xml-tools/parser";
 import { buildAst, XMLDocument } from "@xml-tools/ast";
@@ -6,7 +6,7 @@ import { expectExists } from "@ui5-language-assistant/test-utils";
 import { computeQuickFixStableIdInfo } from "../src/quick-fix-stable-id";
 
 describe("the UI5 language assistant QuickFix Service", () => {
-  context("true positive scenarios", () => {
+  describe("true positive scenarios", () => {
     it("will get quick fix info when class is missing id attribute key", () => {
       const testXmlSnippet = `<mvc:View
                                 xmlns:mvc="sap.ui.core.mvc"
@@ -180,7 +180,7 @@ describe("the UI5 language assistant QuickFix Service", () => {
     });
   });
 
-  context("true negative scenarios", () => {
+  describe("true negative scenarios", () => {
     it("will not suggest quick fix id when the tag is empty", () => {
       const testXmlSnippet = `<mvc:View
                                 xmlns:mvc="sap.ui.core.mvc"
