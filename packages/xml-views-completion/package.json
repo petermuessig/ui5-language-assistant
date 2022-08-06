@@ -28,8 +28,9 @@
     "lodash": "4.17.21"
   },
   "devDependencies": {
-    "@ui5-language-assistant/semantic-model": "^3.0.1",
+    "@ui5-language-assistant/semantic-model": "workspace:@ui5-language-assistant/semantic-model@3.0.1",
     "@xml-tools/parser": "1.0.7",
+    "@ui5-language-assistant/semantic-model-types": "^3.0.1",
     "chevrotain": "7.0.1"
   },
   "scripts": {
