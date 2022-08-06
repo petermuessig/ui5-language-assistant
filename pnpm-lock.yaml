@@ -18,6 +18,7 @@ importers:
       '@typescript-eslint/eslint-plugin': 4.14.0
       '@typescript-eslint/parser': 4.14.0
       add: ^2.0.6
+      bit: ^1.0.20
       chai: 4.2.0
       conventional-changelog-cli: ^2.1.1
       coveralls: 3.1.0
@@ -49,6 +50,7 @@ importers:
       yarn: ^1.22.19
     dependencies:
       add: 2.0.6
+      bit: 1.0.20
       yarn: 1.22.19
     devDependencies:
       '@commitlint/cli': 11.0.0
@@ -237,8 +239,9 @@ importers:
 
   packages/xml-views-completion:
     specifiers:
-      '@ui5-language-assistant/logic-utils': ^3.0.1
-      '@ui5-language-assistant/semantic-model': ^3.0.1
+      '@ui5-language-assistant/logic-utils': workspace:@ui5-language-assistant/logic-utils@3.0.1
+      '@ui5-language-assistant/semantic-model': workspace:@ui5-language-assistant/semantic-model@3.0.1
+      '@ui5-language-assistant/semantic-model-types': ^3.0.1
       '@xml-tools/ast': 5.0.0
       '@xml-tools/common': 0.1.2
       '@xml-tools/content-assist': 3.1.7
@@ -255,6 +258,7 @@ importers:
       lodash: 4.17.21
     devDependencies:
       '@ui5-language-assistant/semantic-model': link:../semantic-model
+      '@ui5-language-assistant/semantic-model-types': link:../semantic-model-types
       '@xml-tools/parser': 1.0.7
       chevrotain: 7.0.1
 
@@ -2727,6 +2731,12 @@ packages:
   /before-after-hook/2.2.2:
     resolution: {integrity: sha512-3pZEU3NT5BFUo/AD5ERPWOgQOCZITni6iavr5AUw5AUwQjMlI0kzu5btnyD39AF0gUEsDPwJT+oY1ORBJijPjQ==}
     dev: true
+
+  /bit/1.0.20:
+    resolution: {integrity: sha512-c8oEAYOi8KjAdDmdkLTR669YNvv9f/FWpkx5noFgPMj2DnG4j+HbEN+HRblwUb9V3zDMbVAb8Jx19qrn+9EHvw==}
+    engines: {node: '>= 10.10.0'}
+    hasBin: true
+    dev: false
 
   /bl/4.1.0:
     resolution: {integrity: sha512-1W07cM9gS6DcLperZfFSj+bWLtaPGSOHWhPiGzXmvVJbRLdG82sH/Kn8EtW1VqWVA54AKf2h5k5BbnIbwF3h6w==}
