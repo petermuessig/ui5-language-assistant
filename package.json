@@ -96,5 +96,8 @@
     "extends": [
       "@commitlint/config-conventional"
     ]
+  },
+  "dependencies": {
+    "vitest": "^0.21.0"
   }
 }
