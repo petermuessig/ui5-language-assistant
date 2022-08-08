@@ -5,7 +5,6 @@ import {
   buildUI5Class,
   expectUnsortedEquality,
 } from "@ui5-language-assistant/test-utils";
-import { expect, describe, it, beforeEach } from "vitest";
 
 describe("The @ui5-language-assistant/logic-utils <flattenAggregations> function", () => {
   const aggregationA1 = buildUI5Aggregation({

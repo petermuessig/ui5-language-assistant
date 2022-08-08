@@ -5,7 +5,6 @@ import {
 } from "@ui5-language-assistant/test-utils";
 import { map } from "lodash";
 import { flattenProperties } from "../../src/api";
-import { expect, describe, it, beforeEach } from "vitest";
 
 describe("The @ui5-language-assistant/logic-utils <flattenAggregations> function", () => {
   const propA1 = buildUI5Property({ name: "propA1" });
