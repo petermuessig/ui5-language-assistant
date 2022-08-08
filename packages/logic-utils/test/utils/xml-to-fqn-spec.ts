@@ -5,7 +5,7 @@ import { buildAst, XMLElement } from "@xml-tools/ast";
 import { xmlToFQN, xmlClosingTagToFQN } from "../../src/api";
 
 describe("The @ui5-language-assistant/logic-utils <xmlToFQN> function", () => {
-  context("will return the fully qualified name of an XML tag", () => {
+  describe("will return the fully qualified name of an XML tag", () => {
     it("without any xmlns", () => {
       const xmlText = `
           <note>
@@ -69,7 +69,7 @@ describe("The @ui5-language-assistant/logic-utils <xmlToFQN> function", () => {
 });
 
 describe("The @ui5-language-assistant/logic-utils <xmlClosingTagToFQN> function", () => {
-  context(
+  describe(
     "will return the fully qualified name of an XML Element closing tag",
     () => {
       it("without any xmlns", () => {

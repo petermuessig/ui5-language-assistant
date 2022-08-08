@@ -18,7 +18,7 @@ describe("the use of deprecated class validation", () => {
     });
   });
 
-  context("true positive scenarios", () => {
+  describe("true positive scenarios", () => {
     it("will detect usage of a deprecated class", () => {
       const xmlSnippet = `
           <mvc:View
@@ -119,7 +119,7 @@ describe("the use of deprecated class validation", () => {
     });
   });
 
-  context("negative edge cases", () => {
+  describe("negative edge cases", () => {
     it("will not detect an issue when the class has not been deprecated", () => {
       const xmlSnippet = `
           <mvc:View

@@ -28,7 +28,7 @@ describe("the use of deprecated attribute validation", () => {
     });
   });
 
-  context("true positive scenarios", () => {
+  describe("true positive scenarios", () => {
     function assertSingleIssue(
       xmlSnippet: string,
       message: string,
@@ -131,7 +131,7 @@ describe("the use of deprecated attribute validation", () => {
     });
   });
 
-  context("negative edge cases", () => {
+  describe("negative edge cases", () => {
     let assertNoIssues: (xmlSnippet: string) => void;
     before(() => {
       assertNoIssues = partial(assertNoIssuesBase, ui5SemanticModel, {
@@ -168,7 +168,7 @@ describe("the use of deprecated attribute validation", () => {
     });
   });
 
-  context("non-reproducible unit tests", () => {
+  describe("non-reproducible unit tests", () => {
     it("will not detect an issue when the attribute doesn't have a key", () => {
       const xmlSnippet = `
           <mvc:View

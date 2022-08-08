@@ -19,7 +19,7 @@ import {
   expectModelObjectsEqual,
 } from "./utils/model-test-utils";
 
-context("The ui5-language-assistant semantic model package API", () => {
+describe("The ui5-language-assistant semantic model package API", () => {
   // Properties with these names are types
   const TYPE_PROPERTIES: string[] = ["type", "altTypes"];
   // Types of these kinds exist in other places in the model

@@ -24,7 +24,7 @@ describe("the unknown attribute name validation", () => {
     });
   });
 
-  context("true positive scenarios", () => {
+  describe("true positive scenarios", () => {
     let assertSingleIssue: (xmlSnippet: string, message: string) => void;
     before(() => {
       assertSingleIssue = partial(
@@ -199,7 +199,7 @@ describe("the unknown attribute name validation", () => {
     });
   });
 
-  context("negative edge cases", () => {
+  describe("negative edge cases", () => {
     let assertNoIssues: (xmlSnippet: string) => void;
     before(() => {
       assertNoIssues = partial(assertNoIssuesBase, ui5SemanticModel, {
@@ -207,7 +207,7 @@ describe("the unknown attribute name validation", () => {
       });
     });
 
-    context("class tag", () => {
+    describe("class tag", () => {
       it("will not detect an issue when the attribute is a property", () => {
         assertNoIssues(`
           <mvc:View
@@ -246,7 +246,7 @@ describe("the unknown attribute name validation", () => {
           </mvc:View>`);
       });
 
-      context("special attributes", () => {
+      describe("special attributes", () => {
         it("will not detect an issue when the attribute is 'core:require'", () => {
           assertNoIssues(`
             <mvc:View
@@ -332,7 +332,7 @@ describe("the unknown attribute name validation", () => {
       });
     });
 
-    context("aggregation tag", () => {
+    describe("aggregation tag", () => {
       it("will not detect an issue when the attribute is 'core:require'", () => {
         assertNoIssues(`
           <mvc:View
@@ -389,7 +389,7 @@ describe("the unknown attribute name validation", () => {
       });
     });
 
-    context("unknown tag", () => {
+    describe("unknown tag", () => {
       it("will not detect an issue when the attribute name is unknown for tag starting with lowecase", () => {
         assertNoIssues(`
           <mvc:View
@@ -420,7 +420,7 @@ describe("the unknown attribute name validation", () => {
       });
     });
 
-    context("non-reproducible unit tests", () => {
+    describe("non-reproducible unit tests", () => {
       it("will not detect an issue when the attribute doesn't have a key", () => {
         const xmlSnippet = `
             <mvc:View

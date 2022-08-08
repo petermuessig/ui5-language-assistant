@@ -8,7 +8,7 @@ import {
 import { forEachSymbol } from "../src/utils";
 import { generate } from "../src/api";
 
-context(
+describe(
   "The ui5-language-assistant semantic model package API negative tests",
   () => {
     describe("generate from model with invalid library file", () => {

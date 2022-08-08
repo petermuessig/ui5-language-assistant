@@ -837,7 +837,7 @@ describe("the UI5 language assistant Code Completion Services", () => {
     expectLspKind("UI5UnknownKey", CompletionItemKind.Text);
   });
 
-  context("settings", () => {
+  describe("settings", () => {
     const NO_EXPERIMENTAL_SUGGESTIONS = {
       codeAssist: { deprecated: true, experimental: false },
     };

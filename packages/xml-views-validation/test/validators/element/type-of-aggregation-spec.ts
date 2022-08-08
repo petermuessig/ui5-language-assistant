@@ -28,7 +28,7 @@ describe("the type aggregation validation", () => {
     });
   });
 
-  context("true positive scenarios", () => {
+  describe("true positive scenarios", () => {
     let assertSingleIssue: (xmlSnippet: string, message: string) => void;
     before(() => {
       assertSingleIssue = partial(
@@ -97,7 +97,7 @@ describe("the type aggregation validation", () => {
     });
   });
 
-  context("negative edge cases", () => {
+  describe("negative edge cases", () => {
     let assertNoIssues: (xmlSnippet: string) => void;
     before(() => {
       assertNoIssues = partial(assertNoIssuesBase, ui5SemanticModel, {

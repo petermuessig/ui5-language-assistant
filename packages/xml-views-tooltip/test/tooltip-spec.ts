@@ -23,7 +23,7 @@ describe("the UI5 language assistant Hover Tooltip Service", () => {
     });
   });
 
-  context("hover on attribute key", () => {
+  describe("hover on attribute key", () => {
     it("will get hover content UI5 property", () => {
       const xmlSnippet = `<mvc:View
                             xmlns:mvc="sap.ui.core.mvc"
@@ -63,7 +63,7 @@ describe("the UI5 language assistant Hover Tooltip Service", () => {
     });
   });
 
-  context("hover on attribute value", () => {
+  describe("hover on attribute value", () => {
     it("will get hover content UI5 enum", () => {
       const xmlSnippet = `<mvc:View
                             xmlns:mvc="sap.ui.core.mvc"
@@ -117,7 +117,7 @@ describe("the UI5 language assistant Hover Tooltip Service", () => {
     });
   });
 
-  context("hover on element open tag name", () => {
+  describe("hover on element open tag name", () => {
     it("will get hover content UI5 class", () => {
       const xmlSnippet = `<mvc:View
                             xmlns:mvc="sap.ui.core.mvc"
@@ -207,7 +207,7 @@ describe("the UI5 language assistant Hover Tooltip Service", () => {
     });
   });
 
-  context("hover on element close tag name", () => {
+  describe("hover on element close tag name", () => {
     it("will get hover content of unknown tag with unknown parent tag", () => {
       const xmlSnippet = `<mvc:View
                             xmlns:mvc="sap.ui.core.mvc"

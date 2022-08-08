@@ -17,7 +17,7 @@ describe("The semantic model utils", () => {
     });
   });
 
-  context("findSymbols", () => {
+  describe("findSymbols", () => {
     it("can locate a UI5 symbol in the model by FQN", () => {
       const button = findSymbol(model, "sap.m.Button");
       expectExists(button, "find symbol failed");

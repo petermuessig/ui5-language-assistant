@@ -88,7 +88,7 @@ describe("The `getXMLViewCompletions()` api", () => {
     });
   });
 
-  context("isUI5NodeXMLViewCompletion", () => {
+  describe("isUI5NodeXMLViewCompletion", () => {
     it("returns false for boolean values", () => {
       const xmlSnippet = `
         <mvc:View
@@ -109,7 +109,7 @@ describe("The `getXMLViewCompletions()` api", () => {
     });
   });
 
-  context("filter by settings", () => {
+  describe("filter by settings", () => {
     function testSettingsFilter({
       xmlSnippet,
       suggestionName,
@@ -164,7 +164,7 @@ describe("The `getXMLViewCompletions()` api", () => {
       });
     }
 
-    context("filter experimental items according to settings", () => {
+    describe("filter experimental items according to settings", () => {
       const NO_EXPERIMENTAL_SUGGESTIONS = {
         codeAssist: { deprecated: true, experimental: false },
       };
@@ -266,7 +266,7 @@ describe("The `getXMLViewCompletions()` api", () => {
       });
     });
 
-    context("filter deprecated items according to settings", () => {
+    describe("filter deprecated items according to settings", () => {
       const NO_DEPRECATED_SUGGESTIONS = {
         codeAssist: { deprecated: false, experimental: true },
       };

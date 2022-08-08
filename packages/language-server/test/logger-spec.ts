@@ -23,7 +23,7 @@ describe("the Language Server Logger", () => {
     expect(jsonLogEntry).to.have.deep.property("b", [1, 2, 3]);
   });
 
-  context("log level", () => {
+  describe("log level", () => {
     let orgLevel: LogLevel;
 
     beforeEach(() => {

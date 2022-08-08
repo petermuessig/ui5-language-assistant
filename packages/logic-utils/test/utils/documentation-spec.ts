@@ -129,7 +129,7 @@ describe("The @ui5-language-assistant/logic-utils <convertJSDocToMarkdown> funct
     model = buildUI5Model({});
   });
 
-  context("text has jsdoc tags", () => {
+  describe("text has jsdoc tags", () => {
     it("removes header tags", () => {
       expect(convertJSDocToPlainText("<h1>The Title</h1>", model)).to.equal(
         "\nThe Title\n"

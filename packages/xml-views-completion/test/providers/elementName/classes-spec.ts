@@ -28,10 +28,10 @@ describe("The ui5-language-assistant xml-views-completion", () => {
     });
   });
 
-  context("UI5 Classes Suggestions", () => {
-    context("applicable scenarios", () => {
-      context("classes at the document's root", () => {
-        context("no prefix", () => {
+  describe("UI5 Classes Suggestions", () => {
+    describe("applicable scenarios", () => {
+      describe("classes at the document's root", () => {
+        describe("no prefix", () => {
           it("will suggest **all** Controls at the top level", () => {
             const xmlSnippet = `
               <⇶
@@ -61,7 +61,7 @@ describe("The ui5-language-assistant xml-views-completion", () => {
           });
         });
 
-        context("prefix without xmlns", () => {
+        describe("prefix without xmlns", () => {
           it("will suggest **only** classes matching `sap.ui.core.Control` (not Element) type and the **prefix**", () => {
             const xmlSnippet = `
               <QuickView⇶
@@ -100,8 +100,8 @@ describe("The ui5-language-assistant xml-views-completion", () => {
         });
       });
 
-      context("classes under (implicit) default aggregations", () => {
-        context("no prefix", () => {
+      describe("classes under (implicit) default aggregations", () => {
+        describe("no prefix", () => {
           it("will suggest **all** classes matching the type of the default aggregation", () => {
             const xmlSnippet = `
             <mvc:View
@@ -139,7 +139,7 @@ describe("The ui5-language-assistant xml-views-completion", () => {
           });
         });
 
-        context("prefix without xmlns", () => {
+        describe("prefix without xmlns", () => {
           it("will suggest **only** classes matching **both** the type of the default aggregation and the **prefix**", () => {
             const xmlSnippet = `
             <mvc:View
@@ -172,7 +172,7 @@ describe("The ui5-language-assistant xml-views-completion", () => {
           });
         });
 
-        context("prefix with xmlns", () => {
+        describe("prefix with xmlns", () => {
           it("will suggest **only** classes matching **both** the type of the default aggregation and the **xmlns prefix**", () => {
             const xmlSnippet = `
             <mvc:View
@@ -206,8 +206,8 @@ describe("The ui5-language-assistant xml-views-completion", () => {
         });
       });
 
-      context("classes under an explicit aggregation", () => {
-        context("no prefix", () => {
+      describe("classes under an explicit aggregation", () => {
+        describe("no prefix", () => {
           it("will suggest **all** classes matching the type of the **explicit aggregation**", () => {
             const xmlSnippet = `
             <mvc:View
@@ -294,7 +294,7 @@ describe("The ui5-language-assistant xml-views-completion", () => {
           });
         });
 
-        context("prefix without xmlns", () => {
+        describe("prefix without xmlns", () => {
           it("will suggest **all** classes matching the type of the **explicit aggregation**", () => {
             const xmlSnippet = `
             <mvc:View
@@ -328,8 +328,8 @@ describe("The ui5-language-assistant xml-views-completion", () => {
           });
         });
 
-        context("prefix with xmlns", () => {
-          context("xmlns usage with text after the colon", () => {
+        describe("prefix with xmlns", () => {
+          describe("xmlns usage with text after the colon", () => {
             it("will suggest **only** classes matching **both** the type of the default aggregation and the **xmlns prefix**", () => {
               const xmlSnippet = `
             <mvc:View
@@ -395,7 +395,7 @@ describe("The ui5-language-assistant xml-views-completion", () => {
             });
           });
 
-          context(
+          describe(
             "xmlns usage with the prefix only (nothing after colon)",
             () => {
               it("will suggest **only** classes matching **both** the type of the default aggregation and the **xmlns prefix**", () => {
@@ -473,7 +473,7 @@ describe("The ui5-language-assistant xml-views-completion", () => {
       });
     });
 
-    context("none applicable scenarios", () => {
+    describe("none applicable scenarios", () => {
       it("will offer no suggestions which are abstract classes", () => {
         const xmlSnippet = `
             <mvc:View

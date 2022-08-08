@@ -66,8 +66,8 @@ describe("The ui5-language-assistant xml-views-completion", () => {
     });
   });
 
-  context("properties, events and associations", () => {
-    context("applicable scenarios", () => {
+  describe("properties, events and associations", () => {
+    describe("applicable scenarios", () => {
       it("will suggest when no prefix provided", () => {
         const xmlSnippet = `
         <mvc:View
@@ -258,7 +258,7 @@ describe("The ui5-language-assistant xml-views-completion", () => {
       });
     });
 
-    context("not applicable scenarios", () => {
+    describe("not applicable scenarios", () => {
       it("will not suggest for unknown UI5 class", () => {
         const xmlSnippet = `
         <mvc:View

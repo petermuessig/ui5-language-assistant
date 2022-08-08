@@ -41,7 +41,7 @@ describe("the use of non unique id validation", () => {
       });
   });
 
-  context("true positive scenarios", () => {
+  describe("true positive scenarios", () => {
     it("will detect two duplicate ID in different controls", () => {
       const xmlSnippet = `
           <mvc:View
@@ -166,7 +166,7 @@ describe("the use of non unique id validation", () => {
     });
   });
 
-  context("negative edge cases", () => {
+  describe("negative edge cases", () => {
     it("will not detect issues for duplicate attribute keys that are not `id`", () => {
       const xmlSnippet = `
           <mvc:View

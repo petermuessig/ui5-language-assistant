@@ -18,7 +18,7 @@ describe("the invalid boolean value validation", () => {
     });
   });
 
-  context("true positive scenarios", () => {
+  describe("true positive scenarios", () => {
     it("will detect an invalid boolean value", () => {
       const xmlSnippet = `
           <mvc:View
@@ -48,7 +48,7 @@ describe("the invalid boolean value validation", () => {
     });
   });
 
-  context("negative edge cases", () => {
+  describe("negative edge cases", () => {
     it("will not detect an issue when the boolean value is valid", () => {
       const xmlSnippet = `
           <mvc:View

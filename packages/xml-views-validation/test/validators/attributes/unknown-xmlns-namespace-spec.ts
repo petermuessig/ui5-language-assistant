@@ -18,7 +18,7 @@ describe("the unknown namespace in xmlns attribute value validation", () => {
     });
   });
 
-  context("true positive scenarios", () => {
+  describe("true positive scenarios", () => {
     it("will detect an xmlns value that is not defined in the model in the default namespace", () => {
       const xmlSnippet = `
           <mvc:View
@@ -72,7 +72,7 @@ describe("the unknown namespace in xmlns attribute value validation", () => {
     });
   });
 
-  context("negative edge cases", () => {
+  describe("negative edge cases", () => {
     it("will not detect an issue when the namespace is valid and points to a namespace", () => {
       const xmlSnippet = `
       <mvc:View

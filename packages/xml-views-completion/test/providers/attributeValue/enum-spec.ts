@@ -17,8 +17,8 @@ describe("The ui5-language-assistant xml-views-completion", () => {
     });
   });
 
-  context("enum values", () => {
-    context("applicable scenarios", () => {
+  describe("enum values", () => {
+    describe("applicable scenarios", () => {
       it("will suggest enum values with no prefix provided", () => {
         const xmlSnippet = `
           <mvc:View
@@ -91,7 +91,7 @@ describe("The ui5-language-assistant xml-views-completion", () => {
       });
     });
 
-    context("none applicable scenarios", () => {
+    describe("none applicable scenarios", () => {
       it("will not provide any suggestions when the property is not of enum type", () => {
         const xmlSnippet = `
           <mvc:View

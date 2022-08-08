@@ -20,8 +20,8 @@ describe("The ui5-language-assistant xml-views-completion", () => {
     });
   });
 
-  context("boolean values", () => {
-    context("applicable scenarios", () => {
+  describe("boolean values", () => {
+    describe("applicable scenarios", () => {
       it("will suggest boolean values with no prefix provided", () => {
         const xmlSnippet = `
           <mvc:View
@@ -92,7 +92,7 @@ describe("The ui5-language-assistant xml-views-completion", () => {
       });
     });
 
-    context("non-applicable scenarios", () => {
+    describe("non-applicable scenarios", () => {
       it("will not provide any suggestions when the property is not of boolean type", () => {
         const xmlSnippet = `
           <mvc:View

@@ -48,7 +48,7 @@ describe.skip("the Language Server Client Validations Integration Tests - Flex E
     await setFileTextContents("", xmlPath);
   });
 
-  context("validations", () => {
+  describe("validations", () => {
     it("will detect missing stable id in non-whitelisted UI5 class", async () => {
       const xmlSnippet = `
           <mvc:View xmlns:uxap="sap.uxap" xmlns:m="sap.m"
@@ -112,7 +112,7 @@ describe.skip("the Language Server Client Validations Integration Tests - Flex E
     });
   });
 
-  context("quick fix", () => {
+  describe("quick fix", () => {
     afterEach(async () => {
       await vscode.commands.executeCommand(
         "workbench.action.closeActiveEditor"
