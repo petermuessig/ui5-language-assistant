@@ -9,7 +9,7 @@ import { UI5SemanticModel } from "@ui5-language-assistant/semantic-model-types";
 
 describe("The @ui5-language-assistant/logic-utils <getDeprecationPlainTextSnippet> function", () => {
   let model: UI5SemanticModel;
-  before(() => {
+  beforeAll(() => {
     model = buildUI5Model({});
   });
 
@@ -125,7 +125,7 @@ describe("The @ui5-language-assistant/logic-utils <getDeprecationPlainTextSnippe
 
 describe("The @ui5-language-assistant/logic-utils <convertJSDocToMarkdown> function", () => {
   let model: UI5SemanticModel;
-  before(() => {
+  beforeAll(() => {
     model = buildUI5Model({});
   });
 
@@ -146,7 +146,7 @@ describe("The @ui5-language-assistant/logic-utils <convertJSDocToMarkdown> funct
 
 describe("The @ui5-language-assistant/logic-utils <convertJSDocToMarkdown> function", () => {
   let model: UI5SemanticModel;
-  before(() => {
+  beforeAll(() => {
     model = buildUI5Model({});
   });
 

@@ -237,7 +237,7 @@ describe("The ui5-language-assistant semantic model package API", () => {
 
   function createModelConsistencyTests(version: TestModelVersion): void {
     describe(`Model generated from ${version}`, () => {
-      before(async () => {
+      beforeAll(async () => {
         await downloadLibraries(version);
       });
 
@@ -262,7 +262,7 @@ describe("The ui5-language-assistant semantic model package API", () => {
 
       describe("model consistency", () => {
         let model: UI5SemanticModel;
-        before(async () => {
+        beforeAll(async () => {
           model = await generateModel({
             version,
             downloadLibs: false,
@@ -297,7 +297,7 @@ describe("The ui5-language-assistant semantic model package API", () => {
     const objectNotExtensibleMatcher = "not extensible";
     const cannotDeleteMatcher = "Cannot delete";
     let model: UI5SemanticModel;
-    before(async () => {
+    beforeAll(async () => {
       model = await generateModel({
         version: "1.74.0",
         modelGenerator: generate,
@@ -353,7 +353,7 @@ describe("The ui5-language-assistant semantic model package API", () => {
 
   describe("API JSON fixes", () => {
     let model: UI5SemanticModel;
-    before(async () => {
+    beforeAll(async () => {
       model = await generateModel({
         version: "1.74.0",
         modelGenerator: generate,

@@ -8,7 +8,7 @@ import { LOGGING_LEVEL_CONFIG_PROP } from "../../src/constants";
 describe("settings configuration properties", () => {
   let packageJsonSettings: Record<string, Setting>;
 
-  before(() => {
+  beforeAll(() => {
     // Get the settings from the package.json
     const packageJsonPath = require.resolve(
       "vscode-ui5-language-assistant/package.json"

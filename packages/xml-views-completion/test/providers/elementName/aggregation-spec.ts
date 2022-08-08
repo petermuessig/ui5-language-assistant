@@ -13,7 +13,7 @@ import { UI5XMLViewCompletion } from "../../../api";
 
 describe("The ui5-language-assistant xml-views-completion", () => {
   let REAL_UI5_MODEL: UI5SemanticModel;
-  before(async () => {
+  beforeAll(async () => {
     REAL_UI5_MODEL = await generateModel({
       version: "1.74.0",
       modelGenerator: generate,

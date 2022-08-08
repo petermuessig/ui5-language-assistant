@@ -11,7 +11,7 @@ import {
 
 describe("The @ui5-language-assistant/logic-utils <findClassesMatchingType> function", () => {
   let ui5Model: UI5SemanticModel;
-  before(async () => {
+  beforeAll(async () => {
     ui5Model = await generateModel({
       version: "1.74.0",
       modelGenerator: generate,
@@ -73,7 +73,7 @@ describe("The @ui5-language-assistant/logic-utils <findClassesMatchingType> func
 
 describe("The @ui5-language-assistant/logic-utils <classIsOfType> function", () => {
   let ui5Model: UI5SemanticModel;
-  before(async () => {
+  beforeAll(async () => {
     ui5Model = await generateModel({
       version: "1.74.0",
       modelGenerator: generate,

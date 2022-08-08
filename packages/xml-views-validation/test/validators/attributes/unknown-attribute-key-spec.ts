@@ -17,7 +17,7 @@ import {
 describe("the unknown attribute name validation", () => {
   let ui5SemanticModel: UI5SemanticModel;
 
-  before(async () => {
+  beforeAll(async () => {
     ui5SemanticModel = await generateModel({
       version: "1.74.0",
       modelGenerator: generate,
@@ -26,7 +26,7 @@ describe("the unknown attribute name validation", () => {
 
   describe("true positive scenarios", () => {
     let assertSingleIssue: (xmlSnippet: string, message: string) => void;
-    before(() => {
+    beforeAll(() => {
       assertSingleIssue = partial(
         assertSingleIssueBase,
         ui5SemanticModel,
@@ -201,7 +201,7 @@ describe("the unknown attribute name validation", () => {
 
   describe("negative edge cases", () => {
     let assertNoIssues: (xmlSnippet: string) => void;
-    before(() => {
+    beforeAll(() => {
       assertNoIssues = partial(assertNoIssuesBase, ui5SemanticModel, {
         attribute: [validators.validateUnknownAttributeKey],
       });

@@ -16,7 +16,7 @@ import { UI5XMLViewCompletion } from "../api";
 describe("The `getXMLViewCompletions()` api", () => {
   let REAL_UI5_MODEL: UI5SemanticModel;
 
-  before(async function () {
+  beforeAll(async function () {
     REAL_UI5_MODEL = await generateModel({
       version: "1.74.0",
       modelGenerator: generate,

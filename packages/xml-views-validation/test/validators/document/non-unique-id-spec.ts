@@ -23,7 +23,7 @@ describe("the use of non unique id validation", () => {
     assertion: (issues: NonUniqueIDIssue[]) => void;
   }) => void;
 
-  before(async () => {
+  beforeAll(async () => {
     ui5SemanticModel = await generateModel({
       version: "1.74.0",
       modelGenerator: generate,

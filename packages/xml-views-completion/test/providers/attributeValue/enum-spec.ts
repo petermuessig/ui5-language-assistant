@@ -10,7 +10,7 @@ import { testSuggestionsScenario } from "../../utils";
 
 describe("The ui5-language-assistant xml-views-completion", () => {
   let ui5SemanticModel: UI5SemanticModel;
-  before(async function () {
+  beforeAll(async function () {
     ui5SemanticModel = await generateModel({
       version: "1.74.0",
       modelGenerator: generate,

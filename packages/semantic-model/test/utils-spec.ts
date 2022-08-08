@@ -10,7 +10,7 @@ import { getFQN } from "./utils/model-test-utils";
 describe("The semantic model utils", () => {
   let model: UI5SemanticModel;
 
-  before(async () => {
+  beforeAll(async () => {
     model = await generateModel({
       version: "1.74.0",
       modelGenerator: generate,

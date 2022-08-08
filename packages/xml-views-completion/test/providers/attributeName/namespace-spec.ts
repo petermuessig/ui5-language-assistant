@@ -156,7 +156,7 @@ const expectNamespaceKeysSuggestions = partial(expectSuggestions, (_) => {
 describe("The ui5-language-assistant xml-views-completion", () => {
   let ui5SemanticModel: UI5SemanticModel;
 
-  before(async () => {
+  beforeAll(async () => {
     ui5SemanticModel = await generateModel({
       version: "1.74.0",
       modelGenerator: generate,

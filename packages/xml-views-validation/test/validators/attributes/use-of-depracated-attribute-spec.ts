@@ -21,7 +21,7 @@ import {
 describe("the use of deprecated attribute validation", () => {
   let ui5SemanticModel: UI5SemanticModel;
 
-  before(async () => {
+  beforeAll(async () => {
     ui5SemanticModel = await generateModel({
       version: "1.74.0",
       modelGenerator: generate,
@@ -133,7 +133,7 @@ describe("the use of deprecated attribute validation", () => {
 
   describe("negative edge cases", () => {
     let assertNoIssues: (xmlSnippet: string) => void;
-    before(() => {
+    beforeAll(() => {
       assertNoIssues = partial(assertNoIssuesBase, ui5SemanticModel, {
         attribute: [validators.validateUseOfDeprecatedAttribute],
       });
