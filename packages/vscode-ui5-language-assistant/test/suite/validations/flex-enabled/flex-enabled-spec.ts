@@ -1,7 +1,6 @@
 import * as vscode from "vscode";
 import { resolve } from "path";
-import { expect } from "chai";
-import {
+import { expect, describe, it, beforeEach, beforeAll } from "vitest";import {
   validations,
   buildMessage,
   commands,

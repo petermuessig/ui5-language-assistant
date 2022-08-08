@@ -1,5 +1,4 @@
-import { expect } from "chai";
-import { clone, cloneDeep, find, forEach, map } from "lodash";
+import { expect, describe, it, beforeEach, beforeAll } from "vitest";import { clone, cloneDeep, find, forEach, map } from "lodash";
 import { XMLElement } from "@xml-tools/ast";
 import {
   UI5Aggregation,

@@ -1,5 +1,4 @@
-import { expect } from "chai";
-import { forEach, isPlainObject, keys } from "lodash";
+import { expect, describe, it, beforeEach, beforeAll } from "vitest";import { forEach, isPlainObject, keys } from "lodash";
 import {
   buildUI5Model,
   buildUI5Class,

@@ -1,6 +1,5 @@
 import { resolve } from "path";
-import { expect } from "chai";
-
+import { expect, describe, it, beforeEach, beforeAll } from "vitest";
 import { SERVER_PATH } from "../src/api";
 
 describe("the Language Server api", () => {

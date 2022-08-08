@@ -1,5 +1,4 @@
-import { expect } from "chai";
-import { difference, partial } from "lodash";
+import { expect, describe, it, beforeEach, beforeAll } from "vitest";import { difference, partial } from "lodash";
 import {
   UI5Aggregation,
   UI5Association,

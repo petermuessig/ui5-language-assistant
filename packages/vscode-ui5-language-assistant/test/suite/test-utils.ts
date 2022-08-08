@@ -2,8 +2,7 @@ import { resolve } from "path";
 import { promises as fs } from "fs";
 import * as vscode from "vscode";
 import * as chai from "chai";
-import { expect } from "chai";
-import deepEqualInAnyOrder from "deep-equal-in-any-order";
+import { expect, describe, it, beforeEach, beforeAll } from "vitest";import deepEqualInAnyOrder from "deep-equal-in-any-order";
 import { TextDocument } from "vscode-languageclient";
 
 chai.use(deepEqualInAnyOrder);

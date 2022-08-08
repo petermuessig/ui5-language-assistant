@@ -1,5 +1,4 @@
-import { expect } from "chai";
-import { map, uniq } from "lodash";
+import { expect, describe, it, beforeEach, beforeAll } from "vitest";import { map, uniq } from "lodash";
 import { CompletionItemKind } from "vscode-languageserver";
 import { UI5SemanticModel } from "@ui5-language-assistant/semantic-model-types";
 import { generateModel } from "@ui5-language-assistant/test-utils";

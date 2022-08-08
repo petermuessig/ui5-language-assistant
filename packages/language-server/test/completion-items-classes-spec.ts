@@ -1,5 +1,4 @@
-import { expect } from "chai";
-import { map, forEach } from "lodash";
+import { expect, describe, it, beforeEach, beforeAll } from "vitest";import { map, forEach } from "lodash";
 import {
   CompletionItemKind,
   TextEdit,

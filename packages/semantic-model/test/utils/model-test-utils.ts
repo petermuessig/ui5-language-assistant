@@ -1,6 +1,5 @@
 import { isPlainObject } from "lodash";
-import { expect } from "chai";
-import { UI5SemanticModel } from "@ui5-language-assistant/semantic-model-types";
+import { expect, describe, it, beforeEach, beforeAll } from "vitest";import { UI5SemanticModel } from "@ui5-language-assistant/semantic-model-types";
 import { forEachSymbol } from "../../src/api";
 
 export function isObject(value: unknown): value is Record<string, unknown> {

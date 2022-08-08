@@ -1,5 +1,4 @@
-import { expect } from "chai";
-
+import { expect, describe, it, beforeEach, beforeAll } from "vitest";
 import { ui5NodeToFQN } from "../../src/api";
 import {
   buildUI5Class,

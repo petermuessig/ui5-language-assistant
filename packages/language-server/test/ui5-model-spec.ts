@@ -1,5 +1,4 @@
-import { expect } from "chai";
-import { dir as tempDir, file as tempFile } from "tmp-promise";
+import { expect, describe, it, beforeEach, beforeAll } from "vitest";import { dir as tempDir, file as tempFile } from "tmp-promise";
 import { readdir, mkdirs, writeFile } from "fs-extra";
 import { sync as rimrafSync } from "rimraf";
 import {

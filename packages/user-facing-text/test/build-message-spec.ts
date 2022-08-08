@@ -1,5 +1,4 @@
-import { expect } from "chai";
-import { buildMessage } from "../src/api";
+import { expect, describe, it, beforeEach, beforeAll } from "vitest";import { buildMessage } from "../src/api";
 
 describe("buildMessage", () => {
   it("will build a message from given multiple arguments", () => {

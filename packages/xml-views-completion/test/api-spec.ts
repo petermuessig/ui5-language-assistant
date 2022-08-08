@@ -1,5 +1,4 @@
-import { expect } from "chai";
-import { find, map, forEach } from "lodash";
+import { expect, describe, it, beforeEach, beforeAll } from "vitest";import { find, map, forEach } from "lodash";
 import { buildAst, XMLElement } from "@xml-tools/ast";
 import { DocumentCstNode, parse } from "@xml-tools/parser";
 import {

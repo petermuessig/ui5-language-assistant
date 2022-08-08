@@ -1,5 +1,4 @@
-import { expect } from "chai";
-import { restore, spy } from "sinon";
+import { expect, describe, it, beforeEach, beforeAll } from "vitest";import { restore, spy } from "sinon";
 import { getLogger, getLogLevel, setLogLevel } from "../src/logger";
 import { LogLevel } from "@vscode-logging/logger";
 import { validLoggingLevelValues } from "@ui5-language-assistant/settings";

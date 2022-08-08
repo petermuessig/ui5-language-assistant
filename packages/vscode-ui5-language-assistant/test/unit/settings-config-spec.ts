@@ -1,5 +1,4 @@
-import { expect } from "chai";
-import { readJsonSync } from "fs-extra";
+import { expect, describe, it, beforeEach, beforeAll } from "vitest";import { readJsonSync } from "fs-extra";
 import { forEach, set, pickBy, has, keys, camelCase } from "lodash";
 import { getDefaultSettings } from "@ui5-language-assistant/settings";
 import * as settingsModule from "@ui5-language-assistant/settings";

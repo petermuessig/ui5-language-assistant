@@ -1,8 +1,7 @@
 import * as vscode from "vscode";
 import { resolve } from "path";
 import { map } from "lodash";
-import { expect } from "chai";
-import { TextDocument, Position } from "vscode-languageserver";
+import { expect, describe, it, beforeEach, beforeAll } from "vitest";import { TextDocument, Position } from "vscode-languageserver";
 import { sleep, setFileTextContents, rootPkgFolder } from "../test-utils";
 
 const EXTENSION_START_TIMEOUT = 5000;

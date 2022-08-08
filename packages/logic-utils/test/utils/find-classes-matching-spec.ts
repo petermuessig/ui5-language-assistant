@@ -1,6 +1,5 @@
 import { map, forEach } from "lodash";
-import { expect } from "chai";
-import { UI5SemanticModel } from "@ui5-language-assistant/semantic-model-types";
+import { expect, describe, it, beforeEach, beforeAll } from "vitest";import { UI5SemanticModel } from "@ui5-language-assistant/semantic-model-types";
 import { generateModel } from "@ui5-language-assistant/test-utils";
 import { generate } from "@ui5-language-assistant/semantic-model";
 import {

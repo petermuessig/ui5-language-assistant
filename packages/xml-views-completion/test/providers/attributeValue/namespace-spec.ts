@@ -1,5 +1,4 @@
-import { expect } from "chai";
-import { partial } from "lodash";
+import { expect, describe, it, beforeEach, beforeAll } from "vitest";import { partial } from "lodash";
 import { UI5SemanticModel } from "@ui5-language-assistant/semantic-model-types";
 import { ui5NodeToFQN } from "@ui5-language-assistant/logic-utils";
 import { UI5NamespacesInXMLAttributeValueCompletion } from "@ui5-language-assistant/xml-views-completion";

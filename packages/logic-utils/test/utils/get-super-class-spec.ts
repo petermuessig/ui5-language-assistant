@@ -1,5 +1,4 @@
-import { expect } from "chai";
-import { cloneDeep } from "lodash";
+import { expect, describe, it, beforeEach, beforeAll } from "vitest";import { cloneDeep } from "lodash";
 import { UI5Class } from "@ui5-language-assistant/semantic-model-types";
 import { generate } from "@ui5-language-assistant/semantic-model";
 import {

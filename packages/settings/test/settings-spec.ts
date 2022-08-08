@@ -8,8 +8,7 @@ import {
   clearSettings,
 } from "../src/api";
 import { resetSettings } from "../src/settings";
-import { expect } from "chai";
-
+import { expect, describe, it, beforeEach, beforeAll } from "vitest";
 describe("settings utilities", () => {
   beforeEach(() => {
     resetSettings();
