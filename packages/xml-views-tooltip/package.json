@@ -24,13 +24,13 @@
     "@ui5-language-assistant/logic-utils": "^3.0.1",
     "@ui5-language-assistant/semantic-model": "^3.0.1",
     "@ui5-language-assistant/semantic-model-types": "^3.0.1",
-    "@xml-tools/ast": "5.0.5",
-    "@xml-tools/ast-position": "2.0.7",
-    "@xml-tools/common": "0.1.6",
+    "@xml-tools/ast": "5.0.0",
+    "@xml-tools/ast-position": "2.0.2",
+    "@xml-tools/common": "0.1.2",
     "lodash": "4.17.21"
   },
   "devDependencies": {
-    "vscode-languageserver": "8.0.2"
+    "vscode-languageserver": "6.1.1"
   },
   "scripts": {
     "ci": "npm-run-all clean compile lint coverage",
