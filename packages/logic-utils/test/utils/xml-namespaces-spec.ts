@@ -1,4 +1,4 @@
-import { expect, describe, it, beforeEach } from "vitest";
+import { expect } from "chai";
 import {
   resolveXMLNS,
   resolveXMLNSFromPrefix,
@@ -10,7 +10,7 @@ import { parse, DocumentCstNode } from "@xml-tools/parser";
 import { expectExists } from "@ui5-language-assistant/test-utils";
 
 describe("The @ui5-language-assistant/logic-utils <resolveXMLNSFromPrefix> function", () => {
-  describe("prefix exists", () => {
+  context("prefix exists", () => {
     it("returns the namespace for defined prefix", () => {
       const rootElement = getRootElement(
         `<x:b xmlns:a="a.ns" xmlns:x="x.ns"></x:b>`
@@ -30,7 +30,7 @@ describe("The @ui5-language-assistant/logic-utils <resolveXMLNSFromPrefix> funct
     });
   });
 
-  describe("prefix is not sent", () => {
+  context("prefix is not sent", () => {
     it("returns the default namespace when it's defined", () => {
       const rootElement = getRootElement(
         `<a:b xmlns:a="a.ns" xmlns="default.ns"></a:b>`
@@ -46,7 +46,7 @@ describe("The @ui5-language-assistant/logic-utils <resolveXMLNSFromPrefix> funct
     });
   });
 
-  describe("prefix is not defined", () => {
+  context("prefix is not defined", () => {
     it("returns undefined", () => {
       const rootElement = getRootElement(`<a:b xmlns:a="a.ns"></a:b>`);
       expect(resolveXMLNSFromPrefix("x", rootElement)).to.be.undefined;
@@ -62,7 +62,7 @@ describe("The @ui5-language-assistant/logic-utils <resolveXMLNSFromPrefix> funct
 });
 
 describe("The @ui5-language-assistant/logic-utils <resolveXMLNS> function", () => {
-  describe("element prefix exists", () => {
+  context("element prefix exists", () => {
     it("returns the namespace for defined prefix", () => {
       const rootElement = getRootElement(`<a:b xmlns:a="a.ns"></a:b>`);
       expect(resolveXMLNS(rootElement)).to.equal("a.ns");
@@ -78,7 +78,7 @@ describe("The @ui5-language-assistant/logic-utils <resolveXMLNS> function", () =
     });
   });
 
-  describe("element doesn't have a prefix", () => {
+  context("element doesn't have a prefix", () => {
     it("returns the default namespace when it's defined", () => {
       const rootElement = getRootElement(`<b xmlns="default.ns"></b>`);
       expect(resolveXMLNS(rootElement)).to.equal("default.ns");
@@ -90,7 +90,7 @@ describe("The @ui5-language-assistant/logic-utils <resolveXMLNS> function", () =
     });
   });
 
-  describe("element prefix is not defined", () => {
+  context("element prefix is not defined", () => {
     it("returns undefined", () => {
       const rootElement = getRootElement(`<x:b xmlns:a="a.ns"></x:b>`);
       expect(resolveXMLNS(rootElement)).to.be.undefined;
@@ -104,7 +104,7 @@ describe("The @ui5-language-assistant/logic-utils <resolveXMLNS> function", () =
 });
 
 describe("The @ui5-language-assistant/logic-utils <isSameXMLNSFromPrefix> function", () => {
-  describe("bothe prefixes are defined", () => {
+  context("bothe prefixes are defined", () => {
     it("returns true when it's the same prefix", () => {
       const rootElement = getRootElement(`
         <a:root xmlns:a="a.ns">
@@ -170,7 +170,7 @@ describe("The @ui5-language-assistant/logic-utils <isSameXMLNSFromPrefix> functi
     });
   });
 
-  describe("only one of the prefixes is defined", () => {
+  context("only one of the prefixes is defined", () => {
     it("returns false when default namespace is defined", () => {
       const rootElement = getRootElement(`
         <a:root xmlns:a="a.ns" xmlns="default.ns">
@@ -268,7 +268,7 @@ describe("The @ui5-language-assistant/logic-utils <isSameXMLNSFromPrefix> functi
     });
   });
 
-  describe("both prefixes are not defined", () => {
+  context("both prefixes are not defined", () => {
     it("returns true when it's the same prefix", () => {
       const rootElement = getRootElement(`
         <a:root xmlns:a="a.ns">
@@ -320,7 +320,7 @@ describe("The @ui5-language-assistant/logic-utils <isSameXMLNSFromPrefix> functi
 });
 
 describe("The @ui5-language-assistant/logic-utils <isSameXMLNS> function", () => {
-  describe("bothe prefixes are defined", () => {
+  context("bothe prefixes are defined", () => {
     it("returns true when it's the same prefix", () => {
       const rootElement = getRootElement(`
         <a:root xmlns:a="a.ns">
@@ -366,7 +366,7 @@ describe("The @ui5-language-assistant/logic-utils <isSameXMLNS> function", () =>
     });
   });
 
-  describe("only one of the prefixes is defined", () => {
+  context("only one of the prefixes is defined", () => {
     it("returns false when default namespace is defined", () => {
       const rootElement = getRootElement(`
         <a:root xmlns:a="a.ns" xmlns="default.ns">
@@ -438,7 +438,7 @@ describe("The @ui5-language-assistant/logic-utils <isSameXMLNS> function", () =>
     });
   });
 
-  describe("both prefixes are not defined", () => {
+  context("both prefixes are not defined", () => {
     it("returns true when it's the same prefix", () => {
       const rootElement = getRootElement(`
         <a:root xmlns:a="a.ns">

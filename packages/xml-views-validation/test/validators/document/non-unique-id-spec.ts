@@ -1,4 +1,4 @@
-import { expect, describe, it, beforeEach, beforeAll } from "vitest";
+import { expect } from "chai";
 import { UI5SemanticModel } from "@ui5-language-assistant/semantic-model-types";
 import { generateModel } from "@ui5-language-assistant/test-utils";
 import { generate } from "@ui5-language-assistant/semantic-model";
@@ -23,7 +23,7 @@ describe("the use of non unique id validation", () => {
     assertion: (issues: NonUniqueIDIssue[]) => void;
   }) => void;
 
-  beforeAll(async () => {
+  before(async () => {
     ui5SemanticModel = await generateModel({
       version: "1.74.0",
       modelGenerator: generate,
@@ -41,7 +41,7 @@ describe("the use of non unique id validation", () => {
       });
   });
 
-  describe("true positive scenarios", () => {
+  context("true positive scenarios", () => {
     it("will detect two duplicate ID in different controls", () => {
       const xmlSnippet = `
           <mvc:View
@@ -166,7 +166,7 @@ describe("the use of non unique id validation", () => {
     });
   });
 
-  describe("negative edge cases", () => {
+  context("negative edge cases", () => {
     it("will not detect issues for duplicate attribute keys that are not `id`", () => {
       const xmlSnippet = `
           <mvc:View

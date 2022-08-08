@@ -1,4 +1,4 @@
-import { describe, it, beforeEach, beforeAll } from "vitest";
+import { expect } from "chai";
 import { find, map, forEach } from "lodash";
 import { buildAst, XMLElement } from "@xml-tools/ast";
 import { DocumentCstNode, parse } from "@xml-tools/parser";
@@ -12,15 +12,11 @@ import { ui5NodeToFQN } from "@ui5-language-assistant/logic-utils";
 import { generate } from "@ui5-language-assistant/semantic-model";
 import { getXMLViewCompletions, isUI5NodeXMLViewCompletion } from "../src/api";
 import { UI5XMLViewCompletion } from "../api";
-import chai from "chai";
 
-const deepEqualInAnyOrder = require("deep-equal-in-any-order");
-chai.use(deepEqualInAnyOrder);
-const { expect } = chai;
 describe("The `getXMLViewCompletions()` api", () => {
   let REAL_UI5_MODEL: UI5SemanticModel;
 
-  beforeAll(async function () {
+  before(async function () {
     REAL_UI5_MODEL = await generateModel({
       version: "1.74.0",
       modelGenerator: generate,
@@ -92,7 +88,7 @@ describe("The `getXMLViewCompletions()` api", () => {
     });
   });
 
-  describe("isUI5NodeXMLViewCompletion", () => {
+  context("isUI5NodeXMLViewCompletion", () => {
     it("returns false for boolean values", () => {
       const xmlSnippet = `
         <mvc:View
@@ -113,7 +109,7 @@ describe("The `getXMLViewCompletions()` api", () => {
     });
   });
 
-  describe("filter by settings", () => {
+  context("filter by settings", () => {
     function testSettingsFilter({
       xmlSnippet,
       suggestionName,
@@ -168,7 +164,7 @@ describe("The `getXMLViewCompletions()` api", () => {
       });
     }
 
-    describe("filter experimental items according to settings", () => {
+    context("filter experimental items according to settings", () => {
       const NO_EXPERIMENTAL_SUGGESTIONS = {
         codeAssist: { deprecated: true, experimental: false },
       };
@@ -270,7 +266,7 @@ describe("The `getXMLViewCompletions()` api", () => {
       });
     });
 
-    describe("filter deprecated items according to settings", () => {
+    context("filter deprecated items according to settings", () => {
       const NO_DEPRECATED_SUGGESTIONS = {
         codeAssist: { deprecated: false, experimental: true },
       };

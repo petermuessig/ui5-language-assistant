@@ -1,4 +1,4 @@
-import { beforeAll, describe, it, beforeEach } from "vitest";
+import { expect } from "chai";
 import { partial } from "lodash";
 import { UI5SemanticModel } from "@ui5-language-assistant/semantic-model-types";
 import { generateModel } from "@ui5-language-assistant/test-utils";
@@ -14,11 +14,7 @@ import {
   testValidationsScenario,
   computeExpectedRanges,
 } from "../../test-utils";
-import chai from "chai";
 
-const deepEqualInAnyOrder = require("deep-equal-in-any-order");
-chai.use(deepEqualInAnyOrder);
-const { expect } = chai;
 const {
   UNKNOWN_CLASS_IN_NS,
   UNKNOWN_CLASS_WITHOUT_NS,
@@ -33,16 +29,16 @@ const {
 describe("the unknown tag name validation", () => {
   let ui5SemanticModel: UI5SemanticModel;
 
-  beforeAll(async () => {
+  before(async () => {
     ui5SemanticModel = await generateModel({
       version: "1.74.0",
       modelGenerator: generate,
     });
   });
 
-  describe("true positive scenarios", () => {
+  context("true positive scenarios", () => {
     let assertSingleIssue: (xmlSnippet: string, message: string) => void;
-    beforeAll(() => {
+    before(() => {
       assertSingleIssue = partial(
         assertSingleIssueBase,
         ui5SemanticModel,
@@ -54,7 +50,7 @@ describe("the unknown tag name validation", () => {
       );
     });
 
-    describe("tag with namespace", () => {
+    context("tag with namespace", () => {
       it("will detect an invalid class name in root tag", () => {
         assertSingleIssue(
           `<🢂mvc:View_TYPO🢀
@@ -202,8 +198,8 @@ describe("the unknown tag name validation", () => {
       });
     });
 
-    describe("tag without namespace", () => {
-      describe("when default namespace is not defined", () => {
+    context("tag without namespace", () => {
+      context("when default namespace is not defined", () => {
         it("will detect an invalid class name in root tag", () => {
           assertSingleIssue(
             `<🢂View🢀>
@@ -271,7 +267,7 @@ describe("the unknown tag name validation", () => {
         });
       });
 
-      describe("when default namespace is a ui5 namespace", () => {
+      context("when default namespace is a ui5 namespace", () => {
         it("will detect an issue for unknown name under unknown class in the default namespace", () => {
           const xmlSnippet = `
             <mvc:View
@@ -318,7 +314,7 @@ describe("the unknown tag name validation", () => {
       });
     });
 
-    describe("when default namespace is a ui5 namespace", () => {
+    context("when default namespace is a ui5 namespace", () => {
       it("will detect an invalid class name in root tag", () => {
         assertSingleIssue(
           `<🢂View_TYPO🢀
@@ -375,16 +371,16 @@ describe("the unknown tag name validation", () => {
     });
   });
 
-  describe("negative edge cases", () => {
+  context("negative edge cases", () => {
     let assertNoIssues: (xmlSnippet: string) => void;
-    beforeAll(() => {
+    before(() => {
       assertNoIssues = partial(assertNoIssuesBase, ui5SemanticModel, {
         element: [validators.validateUnknownTagName],
       });
     });
 
-    describe("tag with namespace", () => {
-      describe("non-ui5 namespace", () => {
+    context("tag with namespace", () => {
+      context("non-ui5 namespace", () => {
         it("will not detect an issue when namespace is unknown", () => {
           assertNoIssues(
             `<mvc:View_TYPO
@@ -412,9 +408,9 @@ describe("the unknown tag name validation", () => {
         });
       });
 
-      describe("ui5 namespace", () => {
+      context("ui5 namespace", () => {
         let assertSingleIssue: (xmlSnippet: string, message: string) => void;
-        beforeAll(() => {
+        before(() => {
           assertSingleIssue = partial(
             assertSingleIssueBase,
             ui5SemanticModel,
@@ -569,8 +565,8 @@ describe("the unknown tag name validation", () => {
       });
     });
 
-    describe("tag without namespace", () => {
-      describe("when default namespace is a ui5 namespace", () => {
+    context("tag without namespace", () => {
+      context("when default namespace is a ui5 namespace", () => {
         it("will not detect an issue for known class in the root tag", () => {
           assertNoIssues(
             `<View
@@ -677,7 +673,7 @@ describe("the unknown tag name validation", () => {
         });
       });
 
-      describe("when default namespace is a non-ui5 namespace", () => {
+      context("when default namespace is a non-ui5 namespace", () => {
         it("will not detect an issue for unknown name in root tag", () => {
           assertNoIssues(
             `<View_TYPO
@@ -752,7 +748,7 @@ describe("the unknown tag name validation", () => {
         });
       });
 
-      describe("when default namespace is not defined", () => {
+      context("when default namespace is not defined", () => {
         it("will not detect an issue for tag without a name", () => {
           assertNoIssues(
             `< >

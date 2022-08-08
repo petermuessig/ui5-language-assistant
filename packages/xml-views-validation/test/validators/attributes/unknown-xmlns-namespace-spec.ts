@@ -1,3 +1,4 @@
+import { expect } from "chai";
 import { UI5SemanticModel } from "@ui5-language-assistant/semantic-model-types";
 import { generateModel } from "@ui5-language-assistant/test-utils";
 import { generate } from "@ui5-language-assistant/semantic-model";
@@ -6,19 +7,18 @@ import {
   computeExpectedRange,
 } from "../../test-utils";
 import { validators } from "../../../src/api";
-import { expect, beforeAll, describe, it, beforeEach } from "vitest";
 
 describe("the unknown namespace in xmlns attribute value validation", () => {
   let ui5SemanticModel: UI5SemanticModel;
 
-  beforeAll(async () => {
+  before(async () => {
     ui5SemanticModel = await generateModel({
       version: "1.74.0",
       modelGenerator: generate,
     });
   });
 
-  describe("true positive scenarios", () => {
+  context("true positive scenarios", () => {
     it("will detect an xmlns value that is not defined in the model in the default namespace", () => {
       const xmlSnippet = `
           <mvc:View
@@ -72,7 +72,7 @@ describe("the unknown namespace in xmlns attribute value validation", () => {
     });
   });
 
-  describe("negative edge cases", () => {
+  context("negative edge cases", () => {
     it("will not detect an issue when the namespace is valid and points to a namespace", () => {
       const xmlSnippet = `
       <mvc:View

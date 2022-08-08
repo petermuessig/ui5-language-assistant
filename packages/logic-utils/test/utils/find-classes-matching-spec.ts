@@ -1,13 +1,8 @@
-import { map, forEach, sortBy } from "lodash";
-import { beforeAll, describe, it, beforeEach } from "vitest";
+import { map, forEach } from "lodash";
+import { expect } from "chai";
 import { UI5SemanticModel } from "@ui5-language-assistant/semantic-model-types";
 import { generateModel } from "@ui5-language-assistant/test-utils";
 import { generate } from "@ui5-language-assistant/semantic-model";
-import chai from "chai";
-
-const deepEqualInAnyOrder = require("deep-equal-in-any-order");
-chai.use(deepEqualInAnyOrder);
-const { expect } = chai;
 import {
   findClassesMatchingType,
   ui5NodeToFQN,
@@ -16,7 +11,7 @@ import {
 
 describe("The @ui5-language-assistant/logic-utils <findClassesMatchingType> function", () => {
   let ui5Model: UI5SemanticModel;
-  beforeAll(async () => {
+  before(async () => {
     ui5Model = await generateModel({
       version: "1.74.0",
       modelGenerator: generate,
@@ -30,8 +25,7 @@ describe("The @ui5-language-assistant/logic-utils <findClassesMatchingType> func
       model: ui5Model,
     });
     const matchingClassesNames = map(matchingClasses, ui5NodeToFQN);
-    const sortedMatchingClasses = sortBy(matchingClassesNames);
-    expect(sortedMatchingClasses).to.deep.equalInAnyOrder([
+    expect(matchingClassesNames).to.deep.equalInAnyOrder([
       "sap.m.IconTabFilter",
       "sap.m.IconTabSeparator",
     ]);
@@ -64,7 +58,6 @@ describe("The @ui5-language-assistant/logic-utils <findClassesMatchingType> func
       model: ui5Model,
     });
     const matchingClassesNames = map(matchingClasses, ui5NodeToFQN);
-
     expect(matchingClassesNames).to.deep.equalInAnyOrder([
       "sap.f.GridList",
       "sap.m.FacetFilterList",
@@ -80,7 +73,7 @@ describe("The @ui5-language-assistant/logic-utils <findClassesMatchingType> func
 
 describe("The @ui5-language-assistant/logic-utils <classIsOfType> function", () => {
   let ui5Model: UI5SemanticModel;
-  beforeAll(async () => {
+  before(async () => {
     ui5Model = await generateModel({
       version: "1.74.0",
       modelGenerator: generate,

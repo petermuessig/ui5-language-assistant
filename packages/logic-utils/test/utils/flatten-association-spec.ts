@@ -5,7 +5,6 @@ import {
 } from "@ui5-language-assistant/test-utils";
 import { map } from "lodash";
 import { flattenAssociations } from "../../src/api";
-import { expect, describe, it, beforeEach } from "vitest";
 
 describe("The @ui5-language-assistant/logic-utils <flattenAssociation> function", () => {
   const assocA1 = buildUI5Association({ name: "assocA1" });

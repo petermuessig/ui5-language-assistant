@@ -1,4 +1,4 @@
-import { expect, describe, it, beforeEach, beforeAll } from "vitest";
+import { expect } from "chai";
 import { buildUI5Model } from "@ui5-language-assistant/test-utils";
 import {
   getDeprecationPlainTextSnippet,
@@ -9,7 +9,7 @@ import { UI5SemanticModel } from "@ui5-language-assistant/semantic-model-types";
 
 describe("The @ui5-language-assistant/logic-utils <getDeprecationPlainTextSnippet> function", () => {
   let model: UI5SemanticModel;
-  beforeAll(() => {
+  before(() => {
     model = buildUI5Model({});
   });
 
@@ -125,11 +125,11 @@ describe("The @ui5-language-assistant/logic-utils <getDeprecationPlainTextSnippe
 
 describe("The @ui5-language-assistant/logic-utils <convertJSDocToMarkdown> function", () => {
   let model: UI5SemanticModel;
-  beforeAll(() => {
+  before(() => {
     model = buildUI5Model({});
   });
 
-  describe("text has jsdoc tags", () => {
+  context("text has jsdoc tags", () => {
     it("removes header tags", () => {
       expect(convertJSDocToPlainText("<h1>The Title</h1>", model)).to.equal(
         "\nThe Title\n"
@@ -146,7 +146,7 @@ describe("The @ui5-language-assistant/logic-utils <convertJSDocToMarkdown> funct
 
 describe("The @ui5-language-assistant/logic-utils <convertJSDocToMarkdown> function", () => {
   let model: UI5SemanticModel;
-  beforeAll(() => {
+  before(() => {
     model = buildUI5Model({});
   });
 

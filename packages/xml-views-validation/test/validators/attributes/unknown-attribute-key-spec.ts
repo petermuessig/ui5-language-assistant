@@ -1,4 +1,4 @@
-import { expect, beforeAll, describe, it, beforeEach } from "vitest";
+import { expect } from "chai";
 import { find, partial } from "lodash";
 import { DocumentCstNode, parse } from "@xml-tools/parser";
 import { buildAst } from "@xml-tools/ast";
@@ -17,16 +17,16 @@ import {
 describe("the unknown attribute name validation", () => {
   let ui5SemanticModel: UI5SemanticModel;
 
-  beforeAll(async () => {
+  before(async () => {
     ui5SemanticModel = await generateModel({
       version: "1.74.0",
       modelGenerator: generate,
     });
   });
 
-  describe("true positive scenarios", () => {
+  context("true positive scenarios", () => {
     let assertSingleIssue: (xmlSnippet: string, message: string) => void;
-    beforeAll(() => {
+    before(() => {
       assertSingleIssue = partial(
         assertSingleIssueBase,
         ui5SemanticModel,
@@ -199,15 +199,15 @@ describe("the unknown attribute name validation", () => {
     });
   });
 
-  describe("negative edge cases", () => {
+  context("negative edge cases", () => {
     let assertNoIssues: (xmlSnippet: string) => void;
-    beforeAll(() => {
+    before(() => {
       assertNoIssues = partial(assertNoIssuesBase, ui5SemanticModel, {
         attribute: [validators.validateUnknownAttributeKey],
       });
     });
 
-    describe("class tag", () => {
+    context("class tag", () => {
       it("will not detect an issue when the attribute is a property", () => {
         assertNoIssues(`
           <mvc:View
@@ -246,7 +246,7 @@ describe("the unknown attribute name validation", () => {
           </mvc:View>`);
       });
 
-      describe("special attributes", () => {
+      context("special attributes", () => {
         it("will not detect an issue when the attribute is 'core:require'", () => {
           assertNoIssues(`
             <mvc:View
@@ -332,7 +332,7 @@ describe("the unknown attribute name validation", () => {
       });
     });
 
-    describe("aggregation tag", () => {
+    context("aggregation tag", () => {
       it("will not detect an issue when the attribute is 'core:require'", () => {
         assertNoIssues(`
           <mvc:View
@@ -389,7 +389,7 @@ describe("the unknown attribute name validation", () => {
       });
     });
 
-    describe("unknown tag", () => {
+    context("unknown tag", () => {
       it("will not detect an issue when the attribute name is unknown for tag starting with lowecase", () => {
         assertNoIssues(`
           <mvc:View
@@ -420,7 +420,7 @@ describe("the unknown attribute name validation", () => {
       });
     });
 
-    describe("non-reproducible unit tests", () => {
+    context("non-reproducible unit tests", () => {
       it("will not detect an issue when the attribute doesn't have a key", () => {
         const xmlSnippet = `
             <mvc:View

@@ -1,4 +1,4 @@
-import { expect, beforeAll, describe, it, beforeEach } from "vitest";
+import { expect } from "chai";
 import { UI5SemanticModel } from "@ui5-language-assistant/semantic-model-types";
 import { generate } from "@ui5-language-assistant/semantic-model";
 import { generateModel } from "@ui5-language-assistant/test-utils";
@@ -11,14 +11,14 @@ import {
 describe("the use of deprecated class validation", () => {
   let ui5SemanticModel: UI5SemanticModel;
 
-  beforeAll(async () => {
+  before(async () => {
     ui5SemanticModel = await generateModel({
       version: "1.74.0",
       modelGenerator: generate,
     });
   });
 
-  describe("true positive scenarios", () => {
+  context("true positive scenarios", () => {
     it("will detect usage of a deprecated class", () => {
       const xmlSnippet = `
           <mvc:View
@@ -119,7 +119,7 @@ describe("the use of deprecated class validation", () => {
     });
   });
 
-  describe("negative edge cases", () => {
+  context("negative edge cases", () => {
     it("will not detect an issue when the class has not been deprecated", () => {
       const xmlSnippet = `
           <mvc:View

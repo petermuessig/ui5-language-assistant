@@ -1,4 +1,4 @@
-import { expect, describe, it, beforeEach } from "vitest";
+import { expect } from "chai";
 import { restore, spy } from "sinon";
 import { getLogger, getLogLevel, setLogLevel } from "../src/logger";
 import { LogLevel } from "@vscode-logging/logger";
@@ -23,7 +23,7 @@ describe("the Language Server Logger", () => {
     expect(jsonLogEntry).to.have.deep.property("b", [1, 2, 3]);
   });
 
-  describe("log level", () => {
+  context("log level", () => {
     let orgLevel: LogLevel;
 
     beforeEach(() => {

@@ -1,4 +1,4 @@
-import { expect, beforeAll, describe, it, beforeEach } from "vitest";
+import { expect } from "chai";
 import { difference, forEach, partial } from "lodash";
 import { XMLAttribute } from "@xml-tools/ast";
 import { UI5SemanticModel } from "@ui5-language-assistant/semantic-model-types";
@@ -59,15 +59,15 @@ const allPropsEventsAssociations = uiCoreControlProperties
 describe("The ui5-language-assistant xml-views-completion", () => {
   let ui5SemanticModel: UI5SemanticModel;
 
-  beforeAll(async () => {
+  before(async () => {
     ui5SemanticModel = await generateModel({
       version: "1.74.0",
       modelGenerator: generate,
     });
   });
 
-  describe("properties, events and associations", () => {
-    describe("applicable scenarios", () => {
+  context("properties, events and associations", () => {
+    context("applicable scenarios", () => {
       it("will suggest when no prefix provided", () => {
         const xmlSnippet = `
         <mvc:View
@@ -258,7 +258,7 @@ describe("The ui5-language-assistant xml-views-completion", () => {
       });
     });
 
-    describe("not applicable scenarios", () => {
+    context("not applicable scenarios", () => {
       it("will not suggest for unknown UI5 class", () => {
         const xmlSnippet = `
         <mvc:View

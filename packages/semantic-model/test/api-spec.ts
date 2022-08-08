@@ -1,4 +1,4 @@
-import { expect, beforeAll, describe, it, beforeEach } from "vitest";
+import { expect } from "chai";
 import { forEach, isArray, includes, keys } from "lodash";
 import {
   TestModelVersion,
@@ -19,7 +19,7 @@ import {
   expectModelObjectsEqual,
 } from "./utils/model-test-utils";
 
-describe("The ui5-language-assistant semantic model package API", () => {
+context("The ui5-language-assistant semantic model package API", () => {
   // Properties with these names are types
   const TYPE_PROPERTIES: string[] = ["type", "altTypes"];
   // Types of these kinds exist in other places in the model
@@ -237,7 +237,7 @@ describe("The ui5-language-assistant semantic model package API", () => {
 
   function createModelConsistencyTests(version: TestModelVersion): void {
     describe(`Model generated from ${version}`, () => {
-      beforeAll(async () => {
+      before(async () => {
         await downloadLibraries(version);
       });
 
@@ -262,7 +262,7 @@ describe("The ui5-language-assistant semantic model package API", () => {
 
       describe("model consistency", () => {
         let model: UI5SemanticModel;
-        beforeAll(async () => {
+        before(async () => {
           model = await generateModel({
             version,
             downloadLibs: false,
@@ -297,7 +297,7 @@ describe("The ui5-language-assistant semantic model package API", () => {
     const objectNotExtensibleMatcher = "not extensible";
     const cannotDeleteMatcher = "Cannot delete";
     let model: UI5SemanticModel;
-    beforeAll(async () => {
+    before(async () => {
       model = await generateModel({
         version: "1.74.0",
         modelGenerator: generate,
@@ -353,7 +353,7 @@ describe("The ui5-language-assistant semantic model package API", () => {
 
   describe("API JSON fixes", () => {
     let model: UI5SemanticModel;
-    beforeAll(async () => {
+    before(async () => {
       model = await generateModel({
         version: "1.74.0",
         modelGenerator: generate,

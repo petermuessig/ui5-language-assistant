@@ -1,4 +1,4 @@
-import { expect, beforeAll, describe, it, beforeEach } from "vitest";
+import { expect } from "chai";
 import {
   buildUI5Enum,
   generateModel,
@@ -9,7 +9,7 @@ import { getNodeDocumentation } from "../src/documentation";
 
 describe("The @ui5-language-assistant/language-server <getNodeDocumentation> function", () => {
   let ui5SemanticModel: UI5SemanticModel;
-  beforeAll(async function () {
+  before(async function () {
     //TODO: use 1.71.x
     ui5SemanticModel = await generateModel({
       version: "1.74.0",
@@ -17,7 +17,7 @@ describe("The @ui5-language-assistant/language-server <getNodeDocumentation> fun
     });
   });
 
-  describe("deprecatedInfo", () => {
+  context("deprecatedInfo", () => {
     it("will get documentation with deprecatedInfo", () => {
       const ui5Enum = buildUI5Enum({
         name: "dummy-node",
@@ -34,7 +34,7 @@ describe("The @ui5-language-assistant/language-server <getNodeDocumentation> fun
     });
   });
 
-  describe("experimentalInfo", () => {
+  context("experimentalInfo", () => {
     it("will get documentation with experimentalInfo", () => {
       const ui5Enum = buildUI5Enum({
         name: "dummy-node",

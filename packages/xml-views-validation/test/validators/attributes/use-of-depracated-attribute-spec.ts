@@ -1,5 +1,5 @@
 import { partial, find } from "lodash";
-import { expect, describe, it, beforeEach, beforeAll } from "vitest";
+import { expect } from "chai";
 import { parse, DocumentCstNode } from "@xml-tools/parser";
 import { buildAst } from "@xml-tools/ast";
 import { UI5SemanticModel } from "@ui5-language-assistant/semantic-model-types";
@@ -21,14 +21,14 @@ import {
 describe("the use of deprecated attribute validation", () => {
   let ui5SemanticModel: UI5SemanticModel;
 
-  beforeAll(async () => {
+  before(async () => {
     ui5SemanticModel = await generateModel({
       version: "1.74.0",
       modelGenerator: generate,
     });
   });
 
-  describe("true positive scenarios", () => {
+  context("true positive scenarios", () => {
     function assertSingleIssue(
       xmlSnippet: string,
       message: string,
@@ -131,9 +131,9 @@ describe("the use of deprecated attribute validation", () => {
     });
   });
 
-  describe("negative edge cases", () => {
+  context("negative edge cases", () => {
     let assertNoIssues: (xmlSnippet: string) => void;
-    beforeAll(() => {
+    before(() => {
       assertNoIssues = partial(assertNoIssuesBase, ui5SemanticModel, {
         attribute: [validators.validateUseOfDeprecatedAttribute],
       });
@@ -168,7 +168,7 @@ describe("the use of deprecated attribute validation", () => {
     });
   });
 
-  describe("non-reproducible unit tests", () => {
+  context("non-reproducible unit tests", () => {
     it("will not detect an issue when the attribute doesn't have a key", () => {
       const xmlSnippet = `
           <mvc:View

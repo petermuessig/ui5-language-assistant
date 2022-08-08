@@ -1,4 +1,4 @@
-import { expect, describe, it, beforeEach } from "vitest";
+import { expect } from "chai";
 import { splitQNameByNamespace } from "../../src/api";
 
 describe("The @ui5-language-assistant/logic-utils <splitQNameByNamespace> function", () => {

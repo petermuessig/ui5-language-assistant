@@ -1,5 +1,5 @@
 import { forEach, map, defaultsDeep } from "lodash";
-import { expect, describe, it, beforeEach } from "vitest";
+import { expect } from "chai";
 import {
   TextDocument,
   TextDocumentPositionParams,

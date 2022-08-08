@@ -1,5 +1,5 @@
 import { resolve } from "path";
-import { expect, describe, it, beforeEach } from "vitest";
+import { expect } from "chai";
 
 import { SERVER_PATH } from "../src/api";
 

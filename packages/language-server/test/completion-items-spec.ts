@@ -1,4 +1,4 @@
-import { expect, describe, it, beforeEach, beforeAll } from "vitest";
+import { expect } from "chai";
 import { map, uniq, forEach } from "lodash";
 import { CompletionItemKind } from "vscode-languageserver";
 import { UI5XMLViewCompletion } from "@ui5-language-assistant/xml-views-completion";
@@ -24,7 +24,7 @@ describe("the UI5 language assistant Code Completion Services", () => {
   }
 
   let ui5SemanticModel: UI5SemanticModel;
-  beforeAll(async () => {
+  before(async () => {
     //TODO: use 1.71.x
     ui5SemanticModel = await generateModel({
       version: "1.74.0",
@@ -837,7 +837,7 @@ describe("the UI5 language assistant Code Completion Services", () => {
     expectLspKind("UI5UnknownKey", CompletionItemKind.Text);
   });
 
-  describe("settings", () => {
+  context("settings", () => {
     const NO_EXPERIMENTAL_SUGGESTIONS = {
       codeAssist: { deprecated: true, experimental: false },
     };

@@ -1,7 +1,7 @@
 import * as vscode from "vscode";
 import { resolve } from "path";
 import { map } from "lodash";
-import { expect, describe, it, beforeEach } from "vitest";
+import { expect } from "chai";
 import { TextDocument, Position } from "vscode-languageserver";
 import { sleep, setFileTextContents, rootPkgFolder } from "../test-utils";
 
@@ -18,7 +18,7 @@ const scenarioPath = resolve(
 const scenarioUri = vscode.Uri.file(scenarioPath);
 
 describe("the Language Server Client Integration Tests", () => {
-  beforeAll(async () => {
+  before(async () => {
     await vscode.workspace.openTextDocument(scenarioUri);
     await vscode.window.showTextDocument(scenarioUri);
     // Explicitly wait for extension to load

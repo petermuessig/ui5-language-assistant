@@ -1,4 +1,4 @@
-import { expect, describe, it, beforeEach, beforeAll } from "vitest";
+import { expect } from "chai";
 import {
   TextDocument,
   Position,
@@ -19,14 +19,14 @@ import { getHoverResponse } from "../src/hover";
 
 describe("the UI5 language assistant Hover Tooltip Service", () => {
   let ui5SemanticModel: UI5SemanticModel;
-  beforeAll(async () => {
+  before(async () => {
     ui5SemanticModel = await generateModel({
       version: "1.74.0",
       modelGenerator: generate,
     });
   });
 
-  describe("hover on attribute key", () => {
+  context("hover on attribute key", () => {
     it("will get hover content UI5 property", () => {
       const xmlSnippet = `<mvc:View
                             xmlns:mvc="sap.ui.core.mvc"
@@ -83,7 +83,7 @@ describe("the UI5 language assistant Hover Tooltip Service", () => {
     });
   });
 
-  describe("hover on attribute value", () => {
+  context("hover on attribute value", () => {
     it("will get hover content UI5 enum", () => {
       const xmlSnippet = `<mvc:View
                             xmlns:mvc="sap.ui.core.mvc"
@@ -117,7 +117,7 @@ describe("the UI5 language assistant Hover Tooltip Service", () => {
     });
   });
 
-  describe("hover on element open tag name", () => {
+  context("hover on element open tag name", () => {
     it("will get hover content UI5 class", () => {
       const xmlSnippet = `<mvc:View
                             xmlns:mvc="sap.ui.core.mvc"
@@ -149,7 +149,7 @@ describe("the UI5 language assistant Hover Tooltip Service", () => {
     });
   });
 
-  describe("hover on element close tag name", () => {
+  context("hover on element close tag name", () => {
     it("will get hover content UI5 class", () => {
       const xmlSnippet = `<mvc:View
                             xmlns:mvc="sap.ui.core.mvc"

@@ -11,23 +11,22 @@ import {
   assertNoIssues as assertNoIssuesBase,
   assertSingleIssue as assertSingleIssueBase,
 } from "../../test-utils";
-import { expect, beforeAll, describe, it, beforeEach } from "vitest";
 
 const { INVALID_AGGREGATION_CARDINALITY } = validations;
 
 describe("the cardinality aggregation validation", () => {
   let ui5SemanticModel: UI5SemanticModel;
 
-  beforeAll(async () => {
+  before(async () => {
     ui5SemanticModel = await generateModel({
       version: "1.74.0",
       modelGenerator: generate,
     });
   });
 
-  describe("true positive scenarios", () => {
+  context("true positive scenarios", () => {
     let assertSingleIssue: (xmlSnippet: string, message: string) => void;
-    beforeAll(() => {
+    before(() => {
       assertSingleIssue = partial(
         assertSingleIssueBase,
         ui5SemanticModel,
@@ -92,9 +91,9 @@ describe("the cardinality aggregation validation", () => {
     });
   });
 
-  describe("negative edge cases", () => {
+  context("negative edge cases", () => {
     let assertNoIssues: (xmlSnippet: string) => void;
-    beforeAll(() => {
+    before(() => {
       assertNoIssues = partial(assertNoIssuesBase, ui5SemanticModel, {
         element: [validators.validateExplicitAggregationCardinality],
       });

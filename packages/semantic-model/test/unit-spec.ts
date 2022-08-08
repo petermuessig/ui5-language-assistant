@@ -1,4 +1,4 @@
-import { describe, it, beforeEach } from "vitest";
+import { expect } from "chai";
 import { forEach, isPlainObject, keys } from "lodash";
 import {
   buildUI5Model,
@@ -15,12 +15,8 @@ import { getSymbolMaps } from "../src/utils";
 import { generate } from "../src/api";
 import { ClassSymbol, NamespaceSymbol, SymbolBase } from "../src/api-json";
 import { addViewDefaultAggregation } from "../src/fix-api-json";
-import chai from "chai";
 
-const deepEqualInAnyOrder = require("deep-equal-in-any-order");
-chai.use(deepEqualInAnyOrder);
-const { expect } = chai;
-describe("The ui5-language-assistant semantic model package unit tests", () => {
+context("The ui5-language-assistant semantic model package unit tests", () => {
   describe("resolveType", () => {
     it("returns the same type if it's resolved", () => {
       const model = buildUI5Model({});
@@ -259,7 +255,7 @@ describe("The ui5-language-assistant semantic model package unit tests", () => {
     });
   });
 
-  describe("includedLibraries", () => {
+  context("includedLibraries", () => {
     function generateFromLibraries(
       libraries: Record<string, unknown>
     ): UI5SemanticModel {
@@ -324,8 +320,8 @@ describe("The ui5-language-assistant semantic model package unit tests", () => {
     });
   });
 
-  describe("API JSON fixes", () => {
-    describe("addViewDefaultAggregation", () => {
+  context("API JSON fixes", () => {
+    context("addViewDefaultAggregation", () => {
       it("doesn't fail when there is a sap.ui.core.mvc.View with no ui5-metadata", () => {
         addViewDefaultAggregation("sap.ui.core", {
           symbols: [

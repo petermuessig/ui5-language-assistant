@@ -1,4 +1,4 @@
-import { describe, it, beforeEach, beforeAll } from "vitest";
+import { expect } from "chai";
 import { forEach, map } from "lodash";
 import { UI5SemanticModel } from "@ui5-language-assistant/semantic-model-types";
 import { generateModel } from "@ui5-language-assistant/test-utils";
@@ -7,22 +7,18 @@ import { XMLAttribute, XMLElement } from "@xml-tools/ast";
 import { enumSuggestions } from "../../../src/providers/attributeValue/enum";
 import { UI5XMLViewCompletion } from "../../../api";
 import { testSuggestionsScenario } from "../../utils";
-import chai from "chai";
 
-const deepEqualInAnyOrder = require("deep-equal-in-any-order");
-chai.use(deepEqualInAnyOrder);
-const { expect } = chai;
 describe("The ui5-language-assistant xml-views-completion", () => {
   let ui5SemanticModel: UI5SemanticModel;
-  beforeAll(async function () {
+  before(async function () {
     ui5SemanticModel = await generateModel({
       version: "1.74.0",
       modelGenerator: generate,
     });
   });
 
-  describe("enum values", () => {
-    describe("applicable scenarios", () => {
+  context("enum values", () => {
+    context("applicable scenarios", () => {
       it("will suggest enum values with no prefix provided", () => {
         const xmlSnippet = `
           <mvc:View
@@ -95,7 +91,7 @@ describe("The ui5-language-assistant xml-views-completion", () => {
       });
     });
 
-    describe("none applicable scenarios", () => {
+    context("none applicable scenarios", () => {
       it("will not provide any suggestions when the property is not of enum type", () => {
         const xmlSnippet = `
           <mvc:View

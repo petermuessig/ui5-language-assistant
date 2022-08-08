@@ -1,4 +1,4 @@
-import { expect, describe, it, beforeEach } from "vitest";
+import { expect } from "chai";
 import {
   buildUI5DeprecatedInfo,
   buildUI5Model,

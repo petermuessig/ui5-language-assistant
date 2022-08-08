@@ -1,4 +1,4 @@
-import { expect, beforeAll, describe, it, beforeEach } from "vitest";
+import { expect } from "chai";
 import {
   expectExists,
   generateModel,
@@ -10,14 +10,14 @@ import { getFQN } from "./utils/model-test-utils";
 describe("The semantic model utils", () => {
   let model: UI5SemanticModel;
 
-  beforeAll(async () => {
+  before(async () => {
     model = await generateModel({
       version: "1.74.0",
       modelGenerator: generate,
     });
   });
 
-  describe("findSymbols", () => {
+  context("findSymbols", () => {
     it("can locate a UI5 symbol in the model by FQN", () => {
       const button = findSymbol(model, "sap.m.Button");
       expectExists(button, "find symbol failed");
