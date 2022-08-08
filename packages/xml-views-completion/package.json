@@ -21,17 +21,17 @@
   "typings": "./api.d.ts",
   "dependencies": {
     "@ui5-language-assistant/logic-utils": "^3.0.1",
-    "@xml-tools/ast": "5.0.5",
-    "@xml-tools/common": "0.1.6",
-    "@xml-tools/content-assist": "3.1.11",
+    "@xml-tools/ast": "5.0.0",
+    "@xml-tools/common": "0.1.2",
+    "@xml-tools/content-assist": "3.1.7",
     "assert-never": "1.2.1",
     "lodash": "4.17.21"
   },
   "devDependencies": {
     "@ui5-language-assistant/semantic-model": "workspace:@ui5-language-assistant/semantic-model@3.0.1",
+    "@xml-tools/parser": "1.0.7",
     "@ui5-language-assistant/semantic-model-types": "^3.0.1",
-    "@xml-tools/parser": "1.0.11",
-    "chevrotain": "10.1.2"
+    "chevrotain": "7.0.1"
   },
   "scripts": {
     "ci": "npm-run-all clean compile lint coverage",
