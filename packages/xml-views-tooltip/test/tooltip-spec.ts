@@ -1,4 +1,4 @@
-import { expect, describe, it, beforeEach, beforeAll } from "vitest";import { TextDocument, Position } from "vscode-languageserver";
+import { expect, beforeAll, describe, it, beforeEach } from "vitest";import { TextDocument, Position } from "vscode-languageserver";
 import { parse, DocumentCstNode } from "@xml-tools/parser";
 import { astPositionAtOffset } from "@xml-tools/ast-position";
 import { buildAst } from "@xml-tools/ast";

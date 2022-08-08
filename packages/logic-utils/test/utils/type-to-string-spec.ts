@@ -1,4 +1,4 @@
-import { expect, describe, it, beforeEach, beforeAll } from "vitest";import { typeToString } from "../../src/api";
+import { expect, beforeAll, describe, it, beforeEach } from "vitest";import { typeToString } from "../../src/api";
 import { UI5Type } from "@ui5-language-assistant/semantic-model-types";
 import {
   buildUI5Namespace,

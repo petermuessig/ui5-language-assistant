@@ -1,11 +1,11 @@
 import { resolve } from "path";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { runTests } from "vscode-test";
+import { runTests } from '@vscode/test-electron';
 import globby from "globby";
 
 async function main(): Promise<void> {
   try {
-    const extensionDevelopmentPath = resolve(__dirname, "..", "..");
+    const extensionDevelopmentPath = resolve(__dirname, "..");
     const testPkgFolder = resolve(
       extensionDevelopmentPath,
       "lib",
@@ -19,10 +19,10 @@ async function main(): Promise<void> {
       console.warn(
         `SKIPPING TEST: ${path}.\nsee: https://github.com/SAP/ui5-language-assistant/issues/342`
       );
-      // await runTests({
-      //   extensionDevelopmentPath,
-      //   extensionTestsPath: path,
-      // });
+      await runTests({
+        extensionDevelopmentPath,
+        extensionTestsPath: path,
+      });
     }
   } catch (err) {
     console.error("Failed to run tests: ", err);

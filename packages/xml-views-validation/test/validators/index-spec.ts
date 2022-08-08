@@ -1,7 +1,7 @@
 import klawSync from "klaw-sync";
 import { map, filter, forEach, isFunction, includes } from "lodash";
 import { resolve, relative } from "path";
-import { expect, describe, it, beforeEach, beforeAll } from "vitest";import { defaultValidators } from "../../src/api";
+import { expect, beforeAll, describe, it, beforeEach } from "vitest";import { defaultValidators } from "../../src/api";
 import { UI5ValidatorsConfig } from "../../src/validate-xml-views";
 
 describe("The `allValidators` constant", () => {
@@ -13,11 +13,11 @@ describe("The `allValidators` constant", () => {
   validatorPaths = filter(
     filePaths,
     (_) =>
-      _.endsWith(".js") &&
-      !_.endsWith("index.js") &&
+      _.endsWith(".ts") &&
+      !_.endsWith("index.ts") &&
       // "non-stable-id" validation is not part of allValidators.
       // We use it only when `flexEnabled` is set to true.
-      !_.endsWith("non-stable-id.js")
+      !_.endsWith("non-stable-id.ts")
   );
   expect(validatorPaths).to.not.be.empty;
 

@@ -1,4 +1,4 @@
-import { expect, describe, it, beforeEach, beforeAll } from "vitest";import { DocumentCstNode, parse } from "@xml-tools/parser";
+import { expect, beforeAll, describe, it, beforeEach } from "vitest";import { DocumentCstNode, parse } from "@xml-tools/parser";
 import { buildAst, XMLElement } from "@xml-tools/ast";
 
 import { xmlToFQN, xmlClosingTagToFQN } from "../../src/api";

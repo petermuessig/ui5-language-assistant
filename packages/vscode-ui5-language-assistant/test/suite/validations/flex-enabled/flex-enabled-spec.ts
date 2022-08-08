@@ -1,6 +1,6 @@
 import * as vscode from "vscode";
 import { resolve } from "path";
-import { expect, describe, it, beforeEach, beforeAll } from "vitest";import {
+import { expect, beforeAll, describe, it, beforeEach } from "vitest";import {
   validations,
   buildMessage,
   commands,

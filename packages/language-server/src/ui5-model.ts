@@ -81,17 +81,17 @@ export async function getSemanticModelWithFetcher(
       let apiJson = await readFromCache(cacheFilePath);
       // If the file doesn't exist in the cache (or we couldn't read it), fetch it from the network
       if (apiJson === undefined) {
-        getLogger().info("No cache found for UI5 lib", { libName });
+        // getLogger().info("No cache found for UI5 lib", { libName });
         const url = baseUrl + libName.replace(/\./g, "/") + suffix;
         const response = await fetcher(url);
         if (response.ok) {
           apiJson = await response.json();
           await writeToCache(cacheFilePath, apiJson);
         } else if (response.status === 404) {
-          getLogger().error("Could not find UI5 lib from", { url });
+          // getLogger().error("Could not find UI5 lib from", { url });
           await writeToCache(cacheFilePath, {}); // write dummy file! TODO: how to invalidate?
         } else {
-          getLogger().error("Could not read UI5 lib from", { url });
+          // getLogger().error("Could not read UI5 lib from", { url });
         }
       } else {
         getLogger().info("Reading Cache For UI5 Lib ", {

@@ -11,6 +11,7 @@ import {
   assertNoIssues as assertNoIssuesBase,
   assertSingleIssue as assertSingleIssueBase,
 } from "../../test-utils";
+import { beforeAll } from "vitest";
 
 const { INVALID_AGGREGATION_CARDINALITY } = validations;
 

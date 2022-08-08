@@ -1,4 +1,4 @@
-import { expect, describe, it, beforeEach, beforeAll } from "vitest";import { map, uniq, forEach } from "lodash";
+import { beforeAll, describe, it, beforeEach } from "vitest";import { map, uniq, forEach } from "lodash";
 import { CompletionItemKind } from "vscode-languageserver";
 import { UI5XMLViewCompletion } from "@ui5-language-assistant/xml-views-completion";
 import { UI5SemanticModel } from "@ui5-language-assistant/semantic-model-types";
@@ -12,6 +12,11 @@ import {
   getTagName,
   getRanges,
 } from "./completion-items-utils";
+import chai from "chai";
+
+const deepEqualInAnyOrder = require("deep-equal-in-any-order");
+chai.use(deepEqualInAnyOrder);
+const { expect } = chai;
 
 describe("the UI5 language assistant Code Completion Services", () => {
   // Cursor position after selecting the suggestion

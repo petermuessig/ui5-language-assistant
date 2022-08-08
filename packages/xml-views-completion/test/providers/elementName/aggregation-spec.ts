@@ -1,4 +1,4 @@
-import { expect, describe, it, beforeEach, beforeAll } from "vitest";import { map, cloneDeep, forEach } from "lodash";
+import { expect, beforeAll, describe, it, beforeEach } from "vitest";import { map, cloneDeep, forEach } from "lodash";
 import { XMLElement } from "@xml-tools/ast";
 import { UI5SemanticModel } from "@ui5-language-assistant/semantic-model-types";
 import {

@@ -11,6 +11,7 @@ import {
   assertNoIssues as assertNoIssuesBase,
   assertSingleIssue as assertSingleIssueBase,
 } from "../../test-utils";
+import { beforeAll } from "vitest";
 
 describe("the use of deprecated aggregation validation", () => {
   let ui5SemanticModel: UI5SemanticModel;

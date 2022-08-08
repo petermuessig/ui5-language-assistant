@@ -6,6 +6,7 @@ import {
   sleep,
   rootPkgFolder,
 } from "../../test-utils";
+import { beforeAll } from "vitest";
 
 const EXTENSION_START_TIMEOUT = 5000;
 

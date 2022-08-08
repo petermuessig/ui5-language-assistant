@@ -1,4 +1,4 @@
-import { expect, describe, it, beforeEach, beforeAll } from "vitest";import { difference, partial } from "lodash";
+import { expect, beforeAll, describe, it, beforeEach } from "vitest";import { difference, partial } from "lodash";
 import {
   UI5Aggregation,
   UI5Association,

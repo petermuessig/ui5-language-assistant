@@ -1,4 +1,4 @@
-import { expect, describe, it, beforeEach, beforeAll } from "vitest";import { isPossibleBindingAttributeValue } from "../../src/utils/is-binding-attribute-value";
+import { expect, beforeAll, describe, it, beforeEach } from "vitest";import { isPossibleBindingAttributeValue } from "../../src/utils/is-binding-attribute-value";
 
 describe("isPossibleBindingAttributeValue", () => {
   describe("matching cases", () => {

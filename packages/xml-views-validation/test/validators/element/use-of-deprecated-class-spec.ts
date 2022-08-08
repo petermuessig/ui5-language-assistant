@@ -1,4 +1,4 @@
-import { expect, describe, it, beforeEach, beforeAll } from "vitest";import { UI5SemanticModel } from "@ui5-language-assistant/semantic-model-types";
+import { expect, beforeAll, describe, it, beforeEach } from "vitest";import { UI5SemanticModel } from "@ui5-language-assistant/semantic-model-types";
 import { generate } from "@ui5-language-assistant/semantic-model";
 import { generateModel } from "@ui5-language-assistant/test-utils";
 import { validators } from "../../../src/api";

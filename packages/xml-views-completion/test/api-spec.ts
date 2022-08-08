@@ -1,4 +1,4 @@
-import { expect, describe, it, beforeEach, beforeAll } from "vitest";import { find, map, forEach } from "lodash";
+import { beforeAll, describe, it, beforeEach } from "vitest";import { find, map, forEach } from "lodash";
 import { buildAst, XMLElement } from "@xml-tools/ast";
 import { DocumentCstNode, parse } from "@xml-tools/parser";
 import {
@@ -11,7 +11,11 @@ import { ui5NodeToFQN } from "@ui5-language-assistant/logic-utils";
 import { generate } from "@ui5-language-assistant/semantic-model";
 import { getXMLViewCompletions, isUI5NodeXMLViewCompletion } from "../src/api";
 import { UI5XMLViewCompletion } from "../api";
+import chai from "chai";
 
+const deepEqualInAnyOrder = require("deep-equal-in-any-order");
+chai.use(deepEqualInAnyOrder);
+const { expect } = chai; 
 describe("The `getXMLViewCompletions()` api", () => {
   let REAL_UI5_MODEL: UI5SemanticModel;
 

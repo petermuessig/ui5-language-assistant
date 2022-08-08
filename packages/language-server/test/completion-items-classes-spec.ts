@@ -1,4 +1,5 @@
-import { expect, describe, it, beforeEach, beforeAll } from "vitest";import { map, forEach } from "lodash";
+import { beforeAll, describe, it, beforeEach } from "vitest";
+import { map, forEach } from "lodash";
 import {
   CompletionItemKind,
   TextEdit,
@@ -16,7 +17,11 @@ import {
   getTextInRange,
   getTagName,
 } from "./completion-items-utils";
+import chai from "chai";
 
+const deepEqualInAnyOrder = require("deep-equal-in-any-order");
+chai.use(deepEqualInAnyOrder);
+const { expect } = chai;
 describe("the UI5 language assistant Code Completion Services - classes", () => {
   let ui5SemanticModel: UI5SemanticModel;
   beforeAll(async function () {

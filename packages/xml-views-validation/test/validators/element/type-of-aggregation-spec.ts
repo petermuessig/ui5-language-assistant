@@ -1,4 +1,4 @@
-import { expect, describe, it, beforeEach, beforeAll } from "vitest";import { partial, cloneDeep, find } from "lodash";
+import { expect, beforeAll, describe, it, beforeEach } from "vitest";import { partial, cloneDeep, find } from "lodash";
 import {
   UI5SemanticModel,
   UI5Aggregation,

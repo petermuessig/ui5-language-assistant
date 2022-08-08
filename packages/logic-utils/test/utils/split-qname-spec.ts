@@ -1,4 +1,4 @@
-import { expect, describe, it, beforeEach, beforeAll } from "vitest";import { splitQNameByNamespace } from "../../src/api";
+import { expect, beforeAll, describe, it, beforeEach } from "vitest";import { splitQNameByNamespace } from "../../src/api";
 
 describe("The @ui5-language-assistant/logic-utils <splitQNameByNamespace> function", () => {
   it("returns the local name with undefined prefix if it's not qualified", () => {

@@ -1,4 +1,4 @@
-import { expect, describe, it, beforeEach, beforeAll } from "vitest";import { TextDocument } from "vscode-languageserver";
+import { expect, beforeAll, describe, it, beforeEach } from "vitest";import { TextDocument } from "vscode-languageserver";
 import { parse, DocumentCstNode } from "@xml-tools/parser";
 import { buildAst, XMLDocument } from "@xml-tools/ast";
 import { expectExists } from "@ui5-language-assistant/test-utils";

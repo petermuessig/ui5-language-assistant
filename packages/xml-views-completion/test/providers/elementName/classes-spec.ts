@@ -1,4 +1,4 @@
-import { expect, describe, it, beforeEach, beforeAll } from "vitest";import { clone, cloneDeep, find, forEach, map } from "lodash";
+import {  beforeAll, describe, it, beforeEach } from "vitest";import { clone, cloneDeep, find, forEach, map } from "lodash";
 import { XMLElement } from "@xml-tools/ast";
 import {
   UI5Aggregation,
@@ -17,7 +17,11 @@ import {
   UI5ClassesInXMLTagNameCompletion,
 } from "../../../api";
 import { testSuggestionsScenario } from "../../utils";
+import chai from "chai";
 
+const deepEqualInAnyOrder = require("deep-equal-in-any-order");
+chai.use(deepEqualInAnyOrder);
+const { expect } = chai;
 describe("The ui5-language-assistant xml-views-completion", () => {
   let ui5Model: UI5SemanticModel;
   beforeAll(async function () {

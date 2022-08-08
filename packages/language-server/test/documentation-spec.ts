@@ -1,4 +1,4 @@
-import { expect, describe, it, beforeEach, beforeAll } from "vitest";import {
+import { expect, beforeAll, describe, it, beforeEach } from "vitest";import {
   buildUI5Enum,
   generateModel,
 } from "@ui5-language-assistant/test-utils";

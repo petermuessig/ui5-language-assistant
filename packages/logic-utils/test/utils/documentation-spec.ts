@@ -1,4 +1,4 @@
-import { expect, describe, it, beforeEach, beforeAll } from "vitest";import { buildUI5Model } from "@ui5-language-assistant/test-utils";
+import { expect, beforeAll, describe, it, beforeEach } from "vitest";import { buildUI5Model } from "@ui5-language-assistant/test-utils";
 import {
   getDeprecationPlainTextSnippet,
   convertJSDocToMarkdown,

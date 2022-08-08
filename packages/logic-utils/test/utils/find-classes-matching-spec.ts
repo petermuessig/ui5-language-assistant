@@ -1,5 +1,6 @@
 import { map, forEach } from "lodash";
-import { expect, describe, it, beforeEach, beforeAll } from "vitest";import { UI5SemanticModel } from "@ui5-language-assistant/semantic-model-types";
+import {  beforeAll, describe, it, beforeEach } from "vitest";
+import { UI5SemanticModel } from "@ui5-language-assistant/semantic-model-types";
 import { generateModel } from "@ui5-language-assistant/test-utils";
 import { generate } from "@ui5-language-assistant/semantic-model";
 import {
@@ -7,6 +8,11 @@ import {
   ui5NodeToFQN,
   classIsOfType,
 } from "../../src/api";
+import chai from "chai";
+
+const deepEqualInAnyOrder = require("deep-equal-in-any-order");
+chai.use(deepEqualInAnyOrder);
+const { expect } = chai;
 
 describe("The @ui5-language-assistant/logic-utils <findClassesMatchingType> function", () => {
   let ui5Model: UI5SemanticModel;

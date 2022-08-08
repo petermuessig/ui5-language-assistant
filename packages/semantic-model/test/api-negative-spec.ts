@@ -1,4 +1,4 @@
-import { expect, describe, it, beforeEach, beforeAll } from "vitest";import { keys } from "lodash";
+import { expect, beforeAll, describe, it, beforeEach } from "vitest";import { keys } from "lodash";
 import { expectExists } from "@ui5-language-assistant/test-utils";
 import {
   UI5SemanticModel,

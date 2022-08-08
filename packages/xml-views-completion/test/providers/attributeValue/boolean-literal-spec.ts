@@ -1,4 +1,4 @@
-import { expect, describe, it, beforeEach, beforeAll } from "vitest";import { forEach, map } from "lodash";
+import { beforeAll, describe, it, beforeEach } from "vitest";import { forEach, map } from "lodash";
 import { XMLAttribute, XMLElement } from "@xml-tools/ast";
 import { UI5SemanticModel } from "@ui5-language-assistant/semantic-model-types";
 import { generateModel } from "@ui5-language-assistant/test-utils";
@@ -9,7 +9,11 @@ import {
   BooleanValueInXMLAttributeValueCompletion,
 } from "../../../api";
 import { testSuggestionsScenario } from "../../utils";
+import chai from "chai";
 
+const deepEqualInAnyOrder = require("deep-equal-in-any-order");
+chai.use(deepEqualInAnyOrder);
+const { expect } = chai;
 describe("The ui5-language-assistant xml-views-completion", () => {
   let ui5SemanticModel: UI5SemanticModel;
   beforeAll(async () => {

@@ -1,4 +1,4 @@
-import { expect, describe, it, beforeEach, beforeAll } from "vitest";import { forEach, isPlainObject, keys } from "lodash";
+import { beforeAll, describe, it, beforeEach } from "vitest";import { forEach, isPlainObject, keys } from "lodash";
 import {
   buildUI5Model,
   buildUI5Class,
@@ -14,7 +14,11 @@ import { getSymbolMaps } from "../src/utils";
 import { generate } from "../src/api";
 import { ClassSymbol, NamespaceSymbol, SymbolBase } from "../src/api-json";
 import { addViewDefaultAggregation } from "../src/fix-api-json";
+import chai from "chai";
 
+const deepEqualInAnyOrder = require("deep-equal-in-any-order");
+chai.use(deepEqualInAnyOrder);
+const { expect } = chai;
 describe("The ui5-language-assistant semantic model package unit tests", () => {
   describe("resolveType", () => {
     it("returns the same type if it's resolved", () => {

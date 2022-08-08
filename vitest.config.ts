@@ -11,6 +11,10 @@ export default defineConfig({
       "packages/**/lib/test/*-spec.js",
       "packages/**/lib/test/**/**/*-spec.js",
       "packages/**/lib/test/**/*-spec.js",
+      "packages/vscode-ui5-language-assistant/**"
     ],
+    coverage: {
+      reporter: ['text', 'json', 'html'],
+    },
   },
 });

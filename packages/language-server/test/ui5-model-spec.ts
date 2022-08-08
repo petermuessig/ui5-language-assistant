@@ -1,4 +1,4 @@
-import { expect, describe, it, beforeEach, beforeAll } from "vitest";import { dir as tempDir, file as tempFile } from "tmp-promise";
+import { beforeAll, describe, it, beforeEach } from "vitest";import { dir as tempDir, file as tempFile } from "tmp-promise";
 import { readdir, mkdirs, writeFile } from "fs-extra";
 import { sync as rimrafSync } from "rimraf";
 import {
@@ -11,7 +11,11 @@ import { UI5SemanticModel } from "@ui5-language-assistant/semantic-model-types";
 import { FetchResponse } from "../api";
 import { expectExists } from "@ui5-language-assistant/test-utils";
 import { forEach, isPlainObject } from "lodash";
+import chai from "chai";
 
+const deepEqualInAnyOrder = require("deep-equal-in-any-order");
+chai.use(deepEqualInAnyOrder);
+const { expect } = chai;
 describe("the UI5 language assistant ui5 model", () => {
   // The default timeout is 2000ms and getSemanticModel can take ~3000-5000ms
   const GET_MODEL_TIMEOUT = 10000;
@@ -49,7 +53,7 @@ describe("the UI5 language assistant ui5 model", () => {
   it("will get UI5 semantic model", async () => {
     const ui5Model = await getSemanticModel(NO_CACHE_FOLDER, "");
     assertSemanticModel(ui5Model);
-  }).timeout(GET_MODEL_TIMEOUT);
+  }, GET_MODEL_TIMEOUT)
 
   it("doesn't fail if a file cannot be fetched", async () => {
     const ui5Model = await getSemanticModelWithFetcher(async (url: string) => {
@@ -115,7 +119,7 @@ describe("the UI5 language assistant ui5 model", () => {
           }
         });
         assertSemanticModel(ui5ModelFromCache);
-      }).timeout(GET_MODEL_TIMEOUT);
+      }, GET_MODEL_TIMEOUT);
 
       it("doesn't fail when file cannot be written to the cache", async () => {
         // Create a folder with the file name so the file will not be written
@@ -131,7 +135,7 @@ describe("the UI5 language assistant ui5 model", () => {
         // Check we still got the sap.m library data
         expect(Object.keys(ui5Model.namespaces)).to.contain("sap.m");
         expect(ui5Model.namespaces["sap.m"].library).to.equal("sap.m");
-      }).timeout(GET_MODEL_TIMEOUT);
+      }, GET_MODEL_TIMEOUT);
 
       it("doesn't fail when file cannot be read from the cache", async () => {
         // Create a file with non-json content so the file will not be deserialized
@@ -146,7 +150,7 @@ describe("the UI5 language assistant ui5 model", () => {
         // Check we still got the sap.m library data
         expect(Object.keys(ui5Model.namespaces)).to.contain("sap.m");
         expect(ui5Model.namespaces["sap.m"].library).to.equal("sap.m");
-      }).timeout(GET_MODEL_TIMEOUT);
+      }, GET_MODEL_TIMEOUT);
     });
 
     describe("cache path is a file", async () => {
@@ -177,7 +181,7 @@ describe("the UI5 language assistant ui5 model", () => {
           };
         }, cachePath, "");
         expect(fetcherCalled).to.be.true;
-      }).timeout(GET_MODEL_TIMEOUT);
+      }, GET_MODEL_TIMEOUT);
     });
   });
 });

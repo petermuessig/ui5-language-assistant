@@ -12,7 +12,7 @@ const sourcesPath = resolve(__dirname, "server.js");
 // Note this logic would not work with yarn 2.0 / npm 8 / pnpm as `node_modules`
 // is no longer created by those package managers.
 const isDevelopmentRun = existsSync(
-  resolve(__dirname, "..", "..", "node_modules")
+  resolve(__dirname, "..", "node_modules")
 );
 
 export const SERVER_PATH: string = isDevelopmentRun

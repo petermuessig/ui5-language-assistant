@@ -1,4 +1,4 @@
-import { expect, describe, it, beforeEach, beforeAll } from "vitest";import { restore, spy } from "sinon";
+import { expect, beforeAll, describe, it, beforeEach, vi } from "vitest";import { restore, spy } from "sinon";
 import { getLogger, getLogLevel, setLogLevel } from "../src/logger";
 import { LogLevel } from "@vscode-logging/logger";
 import { validLoggingLevelValues } from "@ui5-language-assistant/settings";
@@ -7,7 +7,7 @@ describe("the Language Server Logger", () => {
   let errorSpy;
 
   beforeEach(() => {
-    errorSpy = spy(console, "error");
+    errorSpy = vi.spyOn(console, "error");
   });
 
   afterEach(() => {
@@ -16,7 +16,7 @@ describe("the Language Server Logger", () => {
 
   it("supports structured JSON logging", async () => {
     getLogger().error("hello world", { a: 1, b: [1, 2, 3] });
-    const logEntry = errorSpy.args[0];
+    const logEntry = errorSpy.mock.lastCall
     const jsonLogEntry = JSON.parse(logEntry);
     expect(jsonLogEntry).to.have.property("a", 1);
     expect(jsonLogEntry).to.have.deep.property("b", [1, 2, 3]);
@@ -34,9 +34,9 @@ describe("the Language Server Logger", () => {
       getLogger().error(
         "`error` is lower than `fatal` so no logging should happen"
       );
-      expect(errorSpy).to.have.not.been.called;
+      expect(errorSpy).toHaveBeenCalledTimes(0)
       getLogger().fatal("`fatal` should cause logging to the console");
-      expect(errorSpy).to.have.been.called;
+      expect(errorSpy).toHaveBeenCalled()
     });
 
     it("does not allow changing to an **unknown** logLevel", async () => {

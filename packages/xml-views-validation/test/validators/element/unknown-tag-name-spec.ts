@@ -1,4 +1,4 @@
-import { expect, describe, it, beforeEach, beforeAll } from "vitest";import { partial } from "lodash";
+import { beforeAll, describe, it, beforeEach } from "vitest";import { partial } from "lodash";
 import { UI5SemanticModel } from "@ui5-language-assistant/semantic-model-types";
 import { generateModel } from "@ui5-language-assistant/test-utils";
 import { generate } from "@ui5-language-assistant/semantic-model";
@@ -13,7 +13,11 @@ import {
   testValidationsScenario,
   computeExpectedRanges,
 } from "../../test-utils";
+import chai from "chai";
 
+const deepEqualInAnyOrder = require("deep-equal-in-any-order");
+chai.use(deepEqualInAnyOrder);
+const { expect } = chai;
 const {
   UNKNOWN_CLASS_IN_NS,
   UNKNOWN_CLASS_WITHOUT_NS,

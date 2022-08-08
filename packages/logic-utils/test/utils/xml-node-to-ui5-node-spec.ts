@@ -1,4 +1,4 @@
-import { expect, describe, it, beforeEach, beforeAll } from "vitest";import { find } from "lodash";
+import { expect, beforeAll, describe, it, beforeEach } from "vitest";import { find } from "lodash";
 import { parse, DocumentCstNode } from "@xml-tools/parser";
 import { buildAst, XMLElement, XMLAttribute } from "@xml-tools/ast";
 import { UI5SemanticModel } from "@ui5-language-assistant/semantic-model-types";

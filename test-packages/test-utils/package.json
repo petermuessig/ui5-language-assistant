@@ -8,7 +8,7 @@
     "api.d.ts",
     "src"
   ],
-  "main": "lib/src/api.js",
+  "main": "src/api.ts",
   "repository": "https://github.com/sap/ui5-language-assistant/",
   "license": "Apache-2.0",
   "typings": "./api.d.ts",

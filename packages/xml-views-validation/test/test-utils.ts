@@ -1,5 +1,5 @@
 import { isEmpty } from "lodash";
-import { expect, describe, it, beforeEach, beforeAll } from "vitest";import { DocumentCstNode, parse } from "@xml-tools/parser";
+import { expect, beforeAll, describe, it, beforeEach } from "vitest";import { DocumentCstNode, parse } from "@xml-tools/parser";
 import { buildAst } from "@xml-tools/ast";
 import { UI5SemanticModel } from "@ui5-language-assistant/semantic-model-types";
 import { OffsetRange } from "@ui5-language-assistant/logic-utils";
