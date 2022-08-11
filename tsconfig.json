@@ -37,5 +37,4 @@
       "path": "./packages/vscode-ui5-language-assistant"
     }
   ],
-  "include": ["src/**/*"]
-}
+  "include": ["src/**/*"]}

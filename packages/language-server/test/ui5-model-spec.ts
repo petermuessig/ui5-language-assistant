@@ -1,4 +1,4 @@
-import { beforeAll, describe, it, beforeEach } from "vitest";import { dir as tempDir, file as tempFile } from "tmp-promise";
+import { beforeAll, describe, it, beforeEach, afterEach } from "vitest";import { dir as tempDir, file as tempFile } from "tmp-promise";
 import { readdir, mkdirs, writeFile } from "fs-extra";
 import { sync as rimrafSync } from "rimraf";
 import {

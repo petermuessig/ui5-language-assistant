@@ -28,14 +28,14 @@
     "lodash": "4.17.21"
   },
   "devDependencies": {
-    "@ui5-language-assistant/semantic-model": "^3.0.1",
+    "@ui5-language-assistant/semantic-model":  "workspace:^",
     "@xml-tools/parser": "1.0.7",
     "chevrotain": "7.0.1"
   },
   "scripts": {
     "ci": "npm-run-all clean compile lint coverage",
     "clean": "rimraf ./lib ./coverage ./nyc_output",
-    "compile": "yarn run clean && tsc -p .",
+    "compile": "pnpm run  clean && tsc -p .",
     "compile:watch": "tsc -p . --watch",
     "lint": "eslint . --ext .ts --max-warnings=0 --ignore-path=../../.gitignore",
     "test": "mocha",

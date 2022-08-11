@@ -11,7 +11,7 @@ import {
   assertSingleIssue as assertSingleIssueBase,
 } from "../../test-utils";
 import { validators } from "../../../src/api";
-import { beforeAll } from "vitest";
+import { beforeAll, describe, it } from "vitest";
 
 const { NON_STABLE_ID } = validations;
 

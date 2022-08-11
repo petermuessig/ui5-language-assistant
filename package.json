@@ -16,8 +16,8 @@
     "release:version": "lerna version",
     "release:publish": "lerna publish from-git --yes",
     "ci": "npm-run-all format:validate ci:subpackages coverage:merge legal:*",
-    "compile": "yarn run clean && tsc --build",
-    "compile:watch": "yarn run clean && tsc --build --watch",
+    "compile": "pnpm run  clean && tsc --build",
+    "compile:watch": "pnpm run  clean && tsc --build --watch",
     "format:fix": "prettier --write \"**/*.@(js|ts|json|md)\" --ignore-path=.gitignore",
     "format:validate": "prettier --check \"**/*.@(js|ts|json|md)\" --ignore-path=.gitignore",
     "lint": "eslint . --ext .ts --fix --max-warnings=0 --ignore-path=.gitignore",
@@ -96,5 +96,8 @@
     "extends": [
       "@commitlint/config-conventional"
     ]
+  },
+  "dependencies": {
+    "vitest": "^0.21.1"
   }
 }
